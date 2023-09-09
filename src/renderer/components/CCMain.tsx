@@ -1,14 +1,39 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import ExpenseView from 'renderer/view/ExpenseView';
 
 export default function CCMain() {
   return (
     <Flex flex="1" direction="row">
-      <Flex bg="brand.600" width="50px" />
-      <Flex bg="brand.700" flex="1" direction="column" height="200" padding="5">
+      {/* Left column */}
+      <Flex
+        overflowY="scroll"
+        bg="brand.700"
+        flex="1"
+        direction="column"
+        paddingInline="5"
+        height="calc(100vh - 70px)"
+        sx={{
+          '::-webkit-scrollbar': {
+            display: 'none',
+          },
+        }}
+      >
         <ExpenseView />
       </Flex>
-      <Flex bg="brand.500" flex="1" />
+      {/* Right column */}
+      <Flex
+        height="calc(100vh - 70px)"
+        overflowY="scroll"
+        bg="brand.500"
+        flex="1"
+        direction="column"
+        padding="5"
+        sx={{
+          '::-webkit-scrollbar': {
+            display: 'none',
+          },
+        }}
+      />
     </Flex>
   );
 }
