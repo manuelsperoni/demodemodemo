@@ -24,7 +24,7 @@ function TransactionListItemRecord() {
           Description
         </Text>
       </Flex>
-      <Spacer></Spacer>
+      <Spacer />
       <Text color="green.300">+ €400</Text>
     </Flex>
   );
@@ -130,10 +130,10 @@ function TransactionList() {
 
 export default function ExpenseView() {
   return (
-    <Flex direction="column" gap="5">
+    <>
       <TransactionHeader />
       <TransactionSummary />
       <TransactionList />
-    </Flex>
+    </>
   );
 }

@@ -66,9 +66,5 @@ function TransactionHeader() {
 }
 
 export default function AnalitycsView() {
-  return (
-    <Flex direction="column" gap="5">
-      <TransactionHeader />
-    </Flex>
-  );
+  return <TransactionHeader />;
 }

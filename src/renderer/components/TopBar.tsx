@@ -20,6 +20,7 @@ import {
 import { AiOutlineDown, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { TfiMinus, TfiLayoutWidthFull, TfiClose } from 'react-icons/tfi';
 import { RiFilter3Line } from 'react-icons/ri';
+import { useRef } from 'react';
 
 function WindowsAction() {
   return (
@@ -64,13 +65,20 @@ function PeriodSelector() {
 
 function FilterModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const finalRef = useRef(null);
+
   return (
     <>
       <Button onClick={onOpen} rightIcon={<RiFilter3Line />} size="xs">
         Filter
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="6xl"
+        finalFocusRef={finalRef}
+      >
         <ModalOverlay />
         <ModalContent bg="brand.600" borderColor="brand.400" border="5px">
           <ModalHeader color="brand.200">Filter</ModalHeader>
