@@ -14,21 +14,17 @@ import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi';
 function TransactionListItemRecord() {
   return (
     <Flex gap="10" _hover={{ bg: 'brand.500' }} padding={2} borderRadius={5}>
-      <Flex align="center" gap="2">
+      <Flex align="center" gap="10">
         <Flex direction="column">
           <Text color="brand.200">Bills</Text>
           <Text color="brand.200">Gas</Text>
         </Flex>
+        <Avatar src="https://bit.ly/sage-adebayo" size="sm" name="MS" />
+        <Text color="brand.100" fontSize="xl">
+          Description
+        </Text>
       </Flex>
-      <Flex>
-        <Flex align="center" gap="3">
-          <Avatar src="https://bit.ly/sage-adebayo" size="sm" name="MS" />
-          <Text color="brand.100" fontSize="xl">
-            Description
-          </Text>
-        </Flex>
-      </Flex>
-      <Spacer />
+      <Spacer></Spacer>
       <Text color="green.300">+ €400</Text>
     </Flex>
   );

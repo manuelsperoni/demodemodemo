@@ -84,7 +84,7 @@ function FilterModal() {
         Filter
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} size="xl">
+      <Modal isOpen={isOpen} onClose={onClose} size="6xl">
         <ModalOverlay />
         <ModalContent bg="brand.600" borderColor="brand.400" border="5px">
           <ModalHeader color="brand.200">Filter</ModalHeader>
