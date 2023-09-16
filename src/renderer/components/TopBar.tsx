@@ -24,13 +24,9 @@ import { RiFilter3Line } from 'react-icons/ri';
 function WindowsAction() {
   return (
     <Flex>
-      <IconButton icon={<TfiMinus />} variant="customGhost" borderRadius={0} />
-      <IconButton
-        icon={<TfiLayoutWidthFull />}
-        variant="customGhost"
-        borderRadius={0}
-      />
-      <IconButton icon={<TfiClose />} variant="customGhost" borderRadius={0} />
+      <IconButton icon={<TfiMinus />} borderRadius={0} />
+      <IconButton icon={<TfiLayoutWidthFull />} borderRadius={0} />
+      <IconButton icon={<TfiClose />} borderRadius={0} />
     </Flex>
   );
 }
@@ -38,11 +34,11 @@ function WindowsAction() {
 function DateSelector() {
   return (
     <Flex justify="center" align="center" gap="5">
-      <IconButton icon={<AiOutlineLeft />} variant="customGhost" size="sm" />
+      <IconButton icon={<AiOutlineLeft />} size="sm" />
       <Text color="brand.100" fontWeight="extrabold" fontSize="xl">
         Set 2023
       </Text>
-      <IconButton icon={<AiOutlineRight />} variant="customGhost" size="sm" />
+      <IconButton icon={<AiOutlineRight />} size="sm" />
     </Flex>
   );
 }
@@ -50,12 +46,7 @@ function DateSelector() {
 function PeriodSelector() {
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<AiOutlineDown />}
-        size="xs"
-        variant="customGhost"
-      >
+      <MenuButton as={Button} rightIcon={<AiOutlineDown />} size="xs">
         Monthly
       </MenuButton>
       <MenuList bg="brand.600" borderColor="brand.400">
@@ -75,12 +66,7 @@ function FilterModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button
-        onClick={onOpen}
-        rightIcon={<RiFilter3Line />}
-        variant="customGhost"
-        size="xs"
-      >
+      <Button onClick={onOpen} rightIcon={<RiFilter3Line />} size="xs">
         Filter
       </Button>
 
