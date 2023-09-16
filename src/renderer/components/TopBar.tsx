@@ -24,46 +24,25 @@ import { RiFilter3Line } from 'react-icons/ri';
 function WindowsAction() {
   return (
     <Flex>
-      <IconButton
-        icon={<TfiMinus />}
-        bg="transparent"
-        color="brand.200"
-        _hover={{ bg: 'transparent', color: 'brand.100' }}
-      />
+      <IconButton icon={<TfiMinus />} variant="customGhost" borderRadius={0} />
       <IconButton
         icon={<TfiLayoutWidthFull />}
-        bg="transparent"
-        color="brand.200"
-        _hover={{ bg: 'transparent', color: 'brand.100' }}
+        variant="customGhost"
+        borderRadius={0}
       />
-      <IconButton
-        icon={<TfiClose />}
-        bg="transparent"
-        color="brand.200"
-        _hover={{ bg: 'transparent', color: 'brand.100' }}
-      />
+      <IconButton icon={<TfiClose />} variant="customGhost" borderRadius={0} />
     </Flex>
   );
 }
 
 function DateSelector() {
   return (
-    <Flex justify="center" align="center">
-      <IconButton
-        icon={<AiOutlineLeft />}
-        bg="transparent"
-        color="brand.200"
-        _hover={{ bg: 'transparent', color: 'brand.100' }}
-      />
-      <Text color="brand.200" fontWeight="extrabold">
+    <Flex justify="center" align="center" gap="5">
+      <IconButton icon={<AiOutlineLeft />} variant="customGhost" size="sm" />
+      <Text color="brand.100" fontWeight="extrabold" fontSize="xl">
         Set 2023
       </Text>
-      <IconButton
-        icon={<AiOutlineRight />}
-        bg="transparent"
-        color="brand.200"
-        _hover={{ bg: 'transparent', color: 'brand.100' }}
-      />
+      <IconButton icon={<AiOutlineRight />} variant="customGhost" size="sm" />
     </Flex>
   );
 }
@@ -75,16 +54,13 @@ function PeriodSelector() {
         as={Button}
         rightIcon={<AiOutlineDown />}
         size="xs"
-        bg="transparent"
-        color="brand.300"
-        _hover={{ bg: 'brand.400', color: 'brand.100' }}
-        _expanded={{ bg: 'brand.400' }}
+        variant="customGhost"
       >
         Monthly
       </MenuButton>
-      <MenuList bg="brand.700" borderColor="brand.400">
+      <MenuList bg="brand.600" borderColor="brand.400">
         <MenuItem
-          bg="brand.700"
+          bg="brand.600"
           color="brand.300"
           _hover={{ bg: 'transparent', color: 'brand.100' }}
         >
@@ -102,9 +78,7 @@ function FilterModal() {
       <Button
         onClick={onOpen}
         rightIcon={<RiFilter3Line />}
-        bg="brand.400"
-        color="brand.300"
-        _hover={{ bg: 'brand.400', color: 'brand.100' }}
+        variant="customGhost"
         size="xs"
       >
         Filter
@@ -112,7 +86,7 @@ function FilterModal() {
 
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
-        <ModalContent bg="brand.700" borderColor="brand.400" border="5px">
+        <ModalContent bg="brand.600" borderColor="brand.400" border="5px">
           <ModalHeader color="brand.200">Filter</ModalHeader>
           <ModalCloseButton color="brand.100" />
           <ModalBody>
@@ -125,7 +99,7 @@ function FilterModal() {
   );
 }
 
-export default function CCTopBar() {
+export default function TopBar() {
   return (
     <Flex
       height="40px"
@@ -133,8 +107,8 @@ export default function CCTopBar() {
       borderColor="brand.400"
       justify="center"
       align="center"
-      paddingInline={2}
-      bg="brand.700"
+      paddingLeft={2}
+      bg="brand.600"
     >
       <FilterModal />
       <Spacer />

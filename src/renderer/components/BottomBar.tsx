@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 
-export default function CCBottomBar() {
+export default function BottomBar() {
   return (
     <Flex
       bg="brand.accent"

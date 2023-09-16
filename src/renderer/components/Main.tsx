@@ -1,14 +1,14 @@
 import { Flex, Box } from '@chakra-ui/react';
-import AnalyticsView from 'renderer/view/AnalyticsView';
-import TransactionsView from 'renderer/view/TransactionsView';
+import AnalyticsView from 'renderer/mainView/AnalyticsView';
+import TransactionsView from 'renderer/mainView/TransactionsView';
 
-export default function CCMain() {
+export default function Main() {
   return (
     <Flex flex="1" direction="row">
       {/* Left column */}
       <Flex
         overflowY="scroll"
-        bg="brand.700"
+        bg="brand.600"
         flex="1"
         direction="column"
         paddingInline="5"

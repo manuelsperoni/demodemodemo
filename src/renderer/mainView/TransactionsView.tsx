@@ -15,16 +15,17 @@ function TransactionListItemRecord() {
   return (
     <Flex gap="10" _hover={{ bg: 'brand.500' }} padding={2} borderRadius={5}>
       <Flex align="center" gap="2">
-        <Icon as={GoSquare} color="brand.accent" boxSize={6} />
         <Flex direction="column">
-          <Text color="brand.200">Category</Text>
-          <Text color="brand.400">Subcategory</Text>
+          <Text color="brand.200">Bills</Text>
+          <Text color="brand.200">Gas</Text>
         </Flex>
       </Flex>
       <Flex>
         <Flex align="center" gap="3">
           <Avatar src="https://bit.ly/sage-adebayo" size="sm" name="MS" />
-          <Text color="brand.100">Description</Text>
+          <Text color="brand.100" fontSize="xl">
+            Description
+          </Text>
         </Flex>
       </Flex>
       <Spacer />

@@ -27,16 +27,16 @@ function PeriodSelector() {
       >
         Income
       </MenuButton>
-      <MenuList bg="brand.700" borderColor="brand.400">
+      <MenuList bg="brand.600" borderColor="brand.400">
         <MenuItem
-          bg="brand.700"
+          bg="brand.600"
           color="brand.300"
           _hover={{ bg: 'transparent', color: 'brand.100' }}
         >
           Expense
         </MenuItem>
         <MenuItem
-          bg="brand.700"
+          bg="brand.600"
           color="brand.300"
           _hover={{ bg: 'transparent', color: 'brand.100' }}
         >
