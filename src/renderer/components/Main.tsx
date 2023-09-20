@@ -3,10 +3,11 @@ import AnalyticsView from 'renderer/mainView/AnalyticsView';
 import TransactionsView from 'renderer/mainView/TransactionsView';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useAppContext } from 'renderer/context/AppContext';
 
 export default function Main() {
-  const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure();
-  const [hidden, setHidden] = useState(!isOpen);
+  const state = useAppContext();
+
   return (
     <Flex flex="1" direction="row" overflowY="hidden">
       {/* Left column */}
@@ -24,17 +25,13 @@ export default function Main() {
           },
         }}
       >
-        {' '}
-        <Button {...getButtonProps()}>Toggle</Button>
         <TransactionsView />
       </Flex>
+
       {/* Right column */}
       <motion.div
-        hidden={hidden}
         initial={false}
-        onAnimationStart={() => setHidden(false)}
-        onAnimationComplete={() => setHidden(!isOpen)}
-        animate={{ width: isOpen ? 1000 : 0 }}
+        animate={{ width: state.ui.openPopup ? 'calc(100vw - 600px)' : 0 }}
       >
         <Flex
           overflowY="scroll"
@@ -53,6 +50,22 @@ export default function Main() {
           <AnalyticsView />
         </Flex>
       </motion.div>
+      <Flex
+        overflowY="scroll"
+        bg="brand.600"
+        flex="1"
+        direction="column"
+        paddingInline="5"
+        gap="5"
+        height="calc(100vh - 70px)"
+        sx={{
+          '::-webkit-scrollbar': {
+            display: 'none',
+          },
+        }}
+      >
+        <TransactionsView />
+      </Flex>
     </Flex>
   );
 }

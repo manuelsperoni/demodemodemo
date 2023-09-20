@@ -18,9 +18,19 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { AiOutlineDown, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-import { TfiMinus, TfiLayoutWidthFull, TfiClose } from 'react-icons/tfi';
+import {
+  TfiMinus,
+  TfiLayoutWidthFull,
+  TfiClose,
+  TfiPlus,
+} from 'react-icons/tfi';
 import { RiFilter3Line } from 'react-icons/ri';
-import { useRef } from 'react';
+import { useId, useRef } from 'react';
+import {
+  useAppDispatch,
+  AppAction,
+  TransactionFlow,
+} from 'renderer/context/AppContext';
 
 function WindowsAction() {
   return (
@@ -94,6 +104,26 @@ function FilterModal() {
 }
 
 export default function TopBar() {
+  const dispatch = useAppDispatch();
+  function addtransaction() {
+    dispatch({
+      type: AppAction.ADD_TRANSACTION,
+      payload: {
+        id: '123',
+        amount: 33,
+        userId: 123,
+        userName: 'Manuel',
+        description: 'ciaone',
+        cateogryId: 32,
+        category: 'Bollette',
+        subcategoryId: 21,
+        subcategory: 'Gas',
+        creationDate: Date.now(),
+        flow: TransactionFlow.EXPENSE,
+      },
+    });
+  }
+
   return (
     <Flex
       height="40px"
@@ -108,6 +138,14 @@ export default function TopBar() {
       <Spacer />
       <DateSelector />
       <PeriodSelector />
+      <Button
+        rightIcon={<TfiPlus />}
+        variant="accent"
+        size="xs"
+        onClick={addtransaction}
+      >
+        Add
+      </Button>
       <Spacer />
       <WindowsAction />
     </Flex>

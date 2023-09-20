@@ -10,27 +10,36 @@ import {
 import { HiQueueList } from 'react-icons/hi2';
 import { GoSquare } from 'react-icons/go';
 import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi';
+import {
+  useAppContext,
+  useAppDispatch,
+  AppAction,
+  TransactionType,
+} from 'renderer/context/AppContext';
 
-function TransactionListItemRecord() {
+function TransactionListItemRecord({ transaction }: TransactionType) {
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
   return (
     <Flex gap="10" _hover={{ bg: 'brand.500' }} padding={2} borderRadius={5}>
       <Flex align="center" gap="10">
         <Flex direction="column">
-          <Text color="brand.200">Bills</Text>
-          <Text color="brand.200">Gas</Text>
+          <Text color="brand.200">{transaction.category}</Text>
+          <Text color="brand.200">{transaction.subcategory}</Text>
         </Flex>
         <Avatar src="https://bit.ly/sage-adebayo" size="sm" name="MS" />
         <Text color="brand.100" fontSize="xl">
-          Description
+          {transaction.description}
         </Text>
       </Flex>
       <Spacer />
-      <Text color="green.300">+ €400</Text>
+      <Text color="green.300">{transaction.amount}</Text>
     </Flex>
   );
 }
 
 function TransactionListItem() {
+  const state = useAppContext();
   return (
     <Flex direction="column">
       {/* Header */}
@@ -50,10 +59,9 @@ function TransactionListItem() {
           <Text color="red.400">- € 227</Text>
         </Flex>
       </Flex>
-      {/* Transaction list */}
-      <TransactionListItemRecord />
-      <TransactionListItemRecord />
-      <TransactionListItemRecord />
+      {state.transaction.map((item) => (
+        <TransactionListItemRecord transaction={item} />
+      ))}
     </Flex>
   );
 }

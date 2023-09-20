@@ -11,7 +11,6 @@ const AppTheme = extendTheme({
           background: 'transparent',
           color: 'brand.200',
           _hover: { background: 'brand.400', color: 'brand.100' },
-          _focus: { background: 'brand.400', color: 'brand.100' },
           _expanded: { background: 'brand.400', color: 'brand.100' },
         },
         outline: {
@@ -19,6 +18,12 @@ const AppTheme = extendTheme({
           color: 'brand.200',
           borderColor: 'brand.400',
           _hover: { background: 'brand.400', color: 'brand.100' },
+        },
+        accent: {
+          background: 'brand.accent',
+          color: 'white',
+          _hover: { background: 'brand.400', color: 'brand.100' },
+          _expanded: { background: 'brand.400', color: 'brand.100' },
         },
       },
       defaultProps: {
