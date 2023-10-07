@@ -13,31 +13,19 @@ export default function App() {
   return (
     <ChakraProvider theme={AppTheme}>
       <AppProvider>
-        <Box position="fixed" top="0" left="0" width="100vw" height="40px">
-          <TopBar />
-        </Box>
-        <Box
-          width="calc(100vw - 40px)"
-          height="calc(100vh - 70px)"
-          marginTop="40px"
-          marginLeft="40px"
-        >
-          <Main />
-        </Box>
-        <Flex
-          position="fixed"
-          left="0"
-          width="40px"
-          top="40px"
-          height="calc(100vh - 70px)"
-          flex="1"
-          bg="brand.600"
-        >
-          <LateralBar />
+        <Flex direction="column" height="100vh" width="100wh">
+          <Flex width="100%" bg="Red">
+            <TopBar />
+          </Flex>
+          <Flex width="100%" grow={1} overflow="hidden">
+            <Flex>
+              <LateralBar />
+            </Flex>
+            <Flex bg="Purple" grow={1}>
+              <Main />
+            </Flex>
+          </Flex>
         </Flex>
-        <Box position="fixed" bottom="0" width="100vw" height="30px">
-          <BottomBar />
-        </Box>
       </AppProvider>
     </ChakraProvider>
   );

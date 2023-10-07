@@ -18,7 +18,6 @@ export default function Main() {
         direction="column"
         paddingInline="5"
         gap="5"
-        height="calc(100vh - 70px)"
         sx={{
           '::-webkit-scrollbar': {
             display: 'none',
@@ -27,29 +26,6 @@ export default function Main() {
       >
         <TransactionsView />
       </Flex>
-
-      {/* Right column */}
-      <motion.div
-        initial={false}
-        animate={{ width: state.ui.openPopup ? 'calc(100vw - 600px)' : 0 }}
-      >
-        <Flex
-          overflowY="scroll"
-          bg="brand.500"
-          flex="1"
-          direction="column"
-          paddingInline="5"
-          gap="5"
-          height="calc(100vh - 70px)"
-          sx={{
-            '::-webkit-scrollbar': {
-              display: 'none',
-            },
-          }}
-        >
-          <AnalyticsView />
-        </Flex>
-      </motion.div>
       <Flex
         overflowY="scroll"
         bg="brand.600"
@@ -57,7 +33,6 @@ export default function Main() {
         direction="column"
         paddingInline="5"
         gap="5"
-        height="calc(100vh - 70px)"
         sx={{
           '::-webkit-scrollbar': {
             display: 'none',
