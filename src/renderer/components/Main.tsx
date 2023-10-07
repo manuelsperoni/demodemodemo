@@ -9,12 +9,11 @@ export default function Main() {
   const state = useAppContext();
 
   return (
-    <Flex direction={{ base: 'column', lg: 'row' }} grow={1}>
-      {/* Left column */}
+    <Flex direction={{ base: 'column', lg: 'row' }} grow={1} bg="brand.600">
       <Flex
         overflowY="scroll"
         bg="brand.600"
-        flex="1"
+        grow="1"
         direction="column"
         paddingInline="5"
         gap="5"
@@ -29,7 +28,7 @@ export default function Main() {
       <Flex
         overflowY="scroll"
         bg="brand.600"
-        flex="1"
+        grow="1"
         direction="column"
         paddingInline="5"
         gap="5"
