@@ -121,19 +121,7 @@ function TransactionHeader() {
 }
 
 function TransactionList() {
-  return (
-    <>
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-      <TransactionListItem />
-    </>
-  );
+  return <TransactionListItem />;
 }
 
 export default function ExpenseView() {
