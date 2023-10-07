@@ -13,7 +13,7 @@ export default function App() {
   return (
     <ChakraProvider theme={AppTheme}>
       <AppProvider>
-        <Flex direction="column" height="100vh" width="100wh">
+        <Flex direction="column" height="100vh" width="100wh" overflow="hidden">
           <Flex width="100%" bg="Red">
             <TopBar />
           </Flex>
