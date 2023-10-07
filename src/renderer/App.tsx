@@ -18,7 +18,7 @@ export default function App() {
           {/* Top bar */}
           <TopBar />
           {/* Central */}
-          <Flex grow={1} overflow="hidden">
+          <Flex overflow="hidden">
             {/* Lateral */}
             <LateralBar />
             {/* Main */}

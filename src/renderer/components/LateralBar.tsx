@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function LateralBar() {
   const [open, setOpen] = useState(false);
   return (
-    <Box display={{ base: 'none', md: 'flex' }}>
+    <Box display={{ base: 'none', lg: 'flex' }}>
       <motion.div
         initial={false}
         animate={{ width: open ? 300 : 50 }}

@@ -9,7 +9,7 @@ export default function Main() {
   const state = useAppContext();
 
   return (
-    <Flex direction={{ base: 'column', md: 'row' }} overflowY="hidden" grow={1}>
+    <Flex direction={{ base: 'column', lg: 'row' }} grow={1}>
       {/* Left column */}
       <Flex
         overflowY="scroll"
