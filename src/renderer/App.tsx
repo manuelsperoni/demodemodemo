@@ -16,12 +16,12 @@ export default function App() {
       <AppProvider>
         {/* Layout */}
         <Flex direction="column" height="100vh" width="100vw" bg="Red">
-          <Flex flex="0 0 100px" bg="green" />
-          <Flex flex="1 1 auto" bg="blue" direction="row">
-            <Flex flex="0 0 auto" bg="purple" direction="column">
+          <Flex flex="0 100px" bg="green" />
+          <Flex flex="auto" bg="blue" direction="row">
+            <Flex flex="0 auto" bg="purple" direction="column">
               <motion.div animate={{ width: true ? 300 : 200 }} />
             </Flex>
-            <Flex flex="1 1 auto" bg="orange">
+            <Flex flex="auto" bg="orange">
               <Text>Suca</Text>
             </Flex>
           </Flex>
