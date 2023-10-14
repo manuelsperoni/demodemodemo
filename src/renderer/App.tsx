@@ -15,15 +15,13 @@ export default function App() {
     <ChakraProvider theme={AppTheme}>
       <AppProvider>
         {/* Layout */}
-        <Flex direction="column" height="100vh" width="100vw" bg="Red">
-          <Flex flex="0 100px" bg="green" />
-          <Flex flex="auto" bg="blue" direction="row">
-            <Flex flex="0 auto" bg="purple" direction="column">
-              <motion.div animate={{ width: true ? 300 : 200 }} />
-            </Flex>
-            <Flex flex="auto" bg="orange">
-              <Text>Suca</Text>
-            </Flex>
+        <Flex direction="column" height="100vh" width="100vw">
+          <Flex flex="0 0 50px">
+            <TopBar />
+          </Flex>
+          <Flex flex="1 1 auto" direction="row" overflow="hidden">
+            <LateralBar />
+            <Main />
           </Flex>
         </Flex>
       </AppProvider>

@@ -126,13 +126,13 @@ export default function TopBar() {
 
   return (
     <Flex
-      height="50px"
       borderBottom="1px"
       borderColor="brand.400"
       justify="center"
       align="center"
       paddingLeft={2}
       bg="brand.600"
+      flex="1 auto"
     >
       <FilterModal />
       <Spacer />

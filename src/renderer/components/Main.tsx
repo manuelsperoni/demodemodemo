@@ -9,11 +9,16 @@ export default function Main() {
   const state = useAppContext();
 
   return (
-    <Flex direction={{ base: 'column', lg: 'row' }} grow={1} bg="brand.600">
+    <Flex
+      direction={{ base: 'column', lg: 'row' }}
+      flex="1 1 auto"
+      bg="brand.600"
+      overflow="hidden"
+    >
       <Flex
         overflowY="scroll"
         bg="brand.600"
-        grow="1"
+        flex="1 auto"
         direction="column"
         paddingInline="5"
         gap="5"
@@ -38,7 +43,7 @@ export default function Main() {
           },
         }}
       >
-        <TransactionsView />
+        <AnalyticsView />
       </Flex>
     </Flex>
   );
