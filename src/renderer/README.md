@@ -1,6 +1,8 @@
-# PLANNING
+# Expense Tracker V2.0
 
-## Main feature
+## UI
+- [ ] Design a Dark mode only interface
+
 
 ### Transaction
 -[x] Add transaction  
@@ -22,3 +24,7 @@
 - [ ] Add/remove/edit category
 - [ ] Add/remove/edit subcategory
 - [ ] Set currency
+
+## Data
+- [ ] Save and retrive data in Local Json File 
+- [ ] Online sync? 
