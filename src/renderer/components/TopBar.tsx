@@ -16,14 +16,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  FormLabel,
-  Input,
-  Box,
-  Center,
-  Stack,
-  InputGroup,
-  InputRightElement,
-  useToast,
 } from '@chakra-ui/react';
 import { AiOutlineDown, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import {
@@ -33,18 +25,7 @@ import {
   TfiPlus,
 } from 'react-icons/tfi';
 import { RiFilter3Line } from 'react-icons/ri';
-import { useId, useRef, useState } from 'react';
-import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
-import { addTransaction } from 'renderer/actions/Actions';
-import {
-  CategoryType,
-  SubcategoryType,
-  UserType,
-  DirectionType,
-  CategoryListType,
-  TransactionType,
-} from 'renderer/types/Types';
-import subcategoryFromCategory from '../helper/Helper';
+import { useRef } from 'react';
 import AddTransactionForm from './AddTransactionForm';
 
 function WindowsAction() {

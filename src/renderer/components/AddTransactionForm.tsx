@@ -41,43 +41,45 @@ export default function AddTransactionForm() {
 
   const [description, setDescription] = useState<string>('');
   const [amount, setAmount] = useState<string>(0);
-  const [user, setUser] = useState<UserType>({
-    id: state.users[0].id,
-    description: state.users[0].description,
-  });
-  const [category, setCategory] = useState<CategoryType>({
-    id: state.categories[0].id,
-    description: state.categories[0].description,
-  });
-  const [subcategory, setSubcategory] = useState<SubcategoryType>({
-    id: null,
-    description: null,
-  });
-  const [direction, setDirection] = useState<DirectionType>({
-    id: '1',
-    description: 'expense',
-  });
+  const [userDescription, setUserDescription] = useState<string>(
+    state.users[0].description
+  );
+  const [userId, setUserId] = useState<string>(state.users[0].id);
+
+  const [categoryDescription, setCategoryDescription] = useState<string>(
+    state.categories[0].description
+  );
+  const [categoryId, setCategoryId] = useState<string>(state.categories[0].id);
+  const [subcategoryDescription, setSubcategoryDescription] = useState<
+    string | null
+  >(null);
+  const [subcategoryId, setSubcategoryId] = useState<string | null>(null);
+
+  const [directionDescription, setDirectionDescription] =
+    useState<string>('expense');
+  const [directionId, setDirectionId] = useState<string>('1');
   const [date, setDate] = useState<string>(
     new Date().toISOString().slice(0, 10)
   );
   const id = useId();
 
   function addTransactionHandler() {
-    const newTransaction: TransactionType = {
-      id,
-      amount,
-      userId: user.id,
-      userDescription: user.description,
-      description,
-      categoryId: category.id,
-      categoryDescription: category.description,
-      subcategoryId: subcategory?.id,
-      subcategoryDescription: subcategory?.description,
-      creationDate: date,
-      directionDescription: direction.description,
-      directionId: direction.id,
-    };
-    dispatch(addTransaction(newTransaction));
+    dispatch(
+      addTransaction({
+        id,
+        amount,
+        userId,
+        userDescription,
+        description,
+        categoryId,
+        categoryDescription,
+        subcategoryId,
+        subcategoryDescription,
+        date,
+        directionDescription,
+        directionId,
+      })
+    );
     onClose();
     toast({
       title: 'Done',
@@ -144,22 +146,20 @@ export default function AddTransactionForm() {
                       key={el.id}
                       padding={2}
                       bg={
-                        el.id === direction?.id ? 'brand.accent' : 'transparent'
+                        el.id === directionId ? 'brand.accent' : 'transparent'
                       }
                       borderColor="brand.400"
                       borderWidth={1}
                       _hover={{ bg: 'brand.400' }}
                       borderRadius={5}
                       onClick={() => {
-                        setDirection({
-                          id: el.id,
-                          description: el.description,
-                        });
+                        setDirectionDescription(el.description);
+                        setDirectionId(el.id);
                       }}
                     >
                       <Text
                         color={
-                          el.id === direction?.id ? 'brand.100' : 'brand.300'
+                          el.id === directionId ? 'brand.100' : 'brand.300'
                         }
                         _hover={{ color: 'brand.100' }}
                       >
@@ -176,25 +176,20 @@ export default function AddTransactionForm() {
                     <Center
                       key={el.id}
                       padding={2}
-                      bg={
-                        el.id === category?.id ? 'brand.accent' : 'transparent'
-                      }
+                      bg={el.id === categoryId ? 'brand.accent' : 'transparent'}
                       borderColor="brand.400"
                       borderWidth={1}
                       _hover={{ bg: 'brand.400' }}
                       borderRadius={5}
                       onClick={() => {
-                        setCategory({ id: el.id, description: el.description });
-                        setSubcategory({
-                          id: null,
-                          description: null,
-                        });
+                        setCategoryDescription(el.description);
+                        setCategoryId(el.id);
+                        setSubcategoryDescription(null);
+                        setSubcategoryId(null);
                       }}
                     >
                       <Text
-                        color={
-                          el.id === category?.id ? 'brand.100' : 'brand.300'
-                        }
+                        color={el.id === categoryId ? 'brand.100' : 'brand.300'}
                         _hover={{ color: 'brand.100' }}
                       >
                         {el.description}
@@ -205,44 +200,38 @@ export default function AddTransactionForm() {
               </Box>
               <Box>
                 <FormLabel color="brand.200">Subcategory</FormLabel>
-                {category != null && (
-                  <Flex flex="1 1 auto" wrap="wrap" gap={2}>
-                    {subcategoryFromCategory(state.categories, category.id).map(
-                      (el) => (
-                        <Center
-                          key={el.id}
-                          bg={
-                            el.id === subcategory?.id
-                              ? 'brand.accent'
-                              : 'transparent'
+                <Flex flex="1 1 auto" wrap="wrap" gap={2}>
+                  {subcategoryFromCategory(state.categories, categoryId).map(
+                    (el) => (
+                      <Center
+                        key={el.id}
+                        bg={
+                          el.id === subcategoryId
+                            ? 'brand.accent'
+                            : 'transparent'
+                        }
+                        padding={2}
+                        borderColor="brand.400"
+                        borderWidth={1}
+                        _hover={{ bg: 'brand.400' }}
+                        borderRadius={5}
+                        onClick={() => {
+                          setSubcategoryDescription(el.description);
+                          setSubcategoryId(el.id);
+                        }}
+                      >
+                        <Text
+                          color={
+                            el.id === subcategoryId ? 'brand.100' : 'brand.300'
                           }
-                          padding={2}
-                          borderColor="brand.400"
-                          borderWidth={1}
-                          _hover={{ bg: 'brand.400' }}
-                          borderRadius={5}
-                          onClick={() =>
-                            setSubcategory({
-                              id: el.id,
-                              description: el.description,
-                            })
-                          }
+                          _hover={{ color: 'brand.100' }}
                         >
-                          <Text
-                            color={
-                              el.id === subcategory?.id
-                                ? 'brand.100'
-                                : 'brand.300'
-                            }
-                            _hover={{ color: 'brand.100' }}
-                          >
-                            {el.description}
-                          </Text>
-                        </Center>
-                      )
-                    )}
-                  </Flex>
-                )}
+                          {el.description}
+                        </Text>
+                      </Center>
+                    )
+                  )}
+                </Flex>
               </Box>
               <Box>
                 <FormLabel color="brand.200">Amount</FormLabel>
@@ -269,17 +258,18 @@ export default function AddTransactionForm() {
                     <Center
                       key={el.id}
                       padding={2}
-                      bg={el.id == user?.id ? 'brand.accent' : 'transparent'}
+                      bg={el.id == userId ? 'brand.accent' : 'transparent'}
                       borderColor="brand.400"
                       borderWidth={1}
                       _hover={{ bg: 'brand.400' }}
                       borderRadius={5}
-                      onClick={() =>
-                        setUser({ id: el.id, description: el.description })
-                      }
+                      onClick={() => {
+                        setUserDescription(el.description);
+                        setUserId(el.id);
+                      }}
                     >
                       <Text
-                        color={el.id === user?.id ? 'brand.100' : 'brand.300'}
+                        color={el.id === userId ? 'brand.100' : 'brand.300'}
                         _hover={{ color: 'brand.100' }}
                       >
                         {el.description}

@@ -47,7 +47,7 @@ export type TransactionType = {
   categoryDescription: string;
   subcategoryId: string | null;
   subcategoryDescription: string | null;
-  creationDate: string;
+  date: string;
   directionDescription: string;
   directionId: string;
 };
