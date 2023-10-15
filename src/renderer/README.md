@@ -3,18 +3,17 @@
 ## UI
 - [ ] Design a Dark mode only interface
 
-
 ### Transaction
 -[x] Add transaction  
 -[ ] Edit transaction
 -[ ] Remove transaction 
 
-### Filtering and data display
+### Data Display
 - [ ] Filter transaction by by specific month in specific year
 - [ ] Group Transaction by day in a month
 - [ ] Filter by user
 
-### Statistics
+### Report and Statistics
 - [ ] Generate category split graph and total amount by specific month in specific year
 - [ ] Generate category split graph and total amount by specific year
 - [ ] Generate category split graph and total amount by specific category
@@ -25,6 +24,5 @@
 - [ ] Add/remove/edit subcategory
 - [ ] Set currency
 
-## Data
-- [ ] Save and retrive data in Local Json File 
+## Data management- [ ] Save and retrive data in Local Json File 
 - [ ] Online sync? 
