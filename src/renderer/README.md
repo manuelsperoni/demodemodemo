@@ -4,9 +4,9 @@
 - [ ] Design a Dark mode only interface
 
 ### Transaction
--[x] Add transaction  
--[ ] Edit transaction
--[ ] Remove transaction 
+- [x] Add transaction  
+- [ ] Edit transaction
+- [ ] Remove transaction 
 
 ### Data Display
 - [ ] Filter transaction by by specific month in specific year
