@@ -16,6 +16,14 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  FormLabel,
+  Input,
+  Box,
+  Center,
+  Stack,
+  InputGroup,
+  InputRightElement,
+  useToast,
 } from '@chakra-ui/react';
 import { AiOutlineDown, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import {
@@ -25,19 +33,30 @@ import {
   TfiPlus,
 } from 'react-icons/tfi';
 import { RiFilter3Line } from 'react-icons/ri';
-import { useId, useRef } from 'react';
+import { useId, useRef, useState } from 'react';
+import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
+import { addTransaction } from 'renderer/actions/Actions';
 import {
-  useAppDispatch,
-  AppAction,
-  TransactionFlow,
-} from 'renderer/context/AppContext';
+  CategoryType,
+  SubcategoryType,
+  UserType,
+  DirectionType,
+  CategoryListType,
+  TransactionType,
+} from 'renderer/types/Types';
+import subcategoryFromCategory from '../helper/Helper';
+import AddTransactionForm from './AddTransactionForm';
 
 function WindowsAction() {
   return (
     <Flex>
-      <IconButton icon={<TfiMinus />} borderRadius={0} />
-      <IconButton icon={<TfiLayoutWidthFull />} borderRadius={0} />
-      <IconButton icon={<TfiClose />} borderRadius={0} />
+      <IconButton aria-label="minimize" icon={<TfiMinus />} borderRadius={0} />
+      <IconButton
+        aria-label="maximixe"
+        icon={<TfiLayoutWidthFull />}
+        borderRadius={0}
+      />
+      <IconButton aria-label="close" icon={<TfiClose />} borderRadius={0} />
     </Flex>
   );
 }
@@ -45,11 +64,11 @@ function WindowsAction() {
 function DateSelector() {
   return (
     <Flex justify="center" align="center" gap="5">
-      <IconButton icon={<AiOutlineLeft />} size="sm" />
+      <IconButton aria-label="previous" icon={<AiOutlineLeft />} size="sm" />
       <Text color="brand.100" fontWeight="extrabold" fontSize="xl">
         Set 2023
       </Text>
-      <IconButton icon={<AiOutlineRight />} size="sm" />
+      <IconButton aria-label="next" icon={<AiOutlineRight />} size="sm" />
     </Flex>
   );
 }
@@ -104,26 +123,6 @@ function FilterModal() {
 }
 
 export default function TopBar() {
-  const dispatch = useAppDispatch();
-  function addtransaction() {
-    dispatch({
-      type: AppAction.ADD_TRANSACTION,
-      payload: {
-        id: '123',
-        amount: 33,
-        userId: 123,
-        userName: 'Manuel',
-        description: 'ciaone',
-        cateogryId: 32,
-        category: 'Bollette',
-        subcategoryId: 21,
-        subcategory: 'Gas',
-        creationDate: Date.now(),
-        flow: TransactionFlow.EXPENSE,
-      },
-    });
-  }
-
   return (
     <Flex
       borderBottom="1px"
@@ -138,14 +137,7 @@ export default function TopBar() {
       <Spacer />
       <DateSelector />
       <PeriodSelector />
-      <Button
-        rightIcon={<TfiPlus />}
-        variant="accent"
-        size="xs"
-        onClick={addtransaction}
-      >
-        Add
-      </Button>
+      <AddTransactionForm />
       <Spacer />
       <WindowsAction />
     </Flex>

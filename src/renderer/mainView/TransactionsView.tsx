@@ -8,31 +8,32 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { HiQueueList } from 'react-icons/hi2';
-import { GoSquare } from 'react-icons/go';
 import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi';
-import {
-  useAppContext,
-  useAppDispatch,
-  AppAction,
-  TransactionType,
-} from 'renderer/context/AppContext';
+import { useAppContext } from 'renderer/context/AppContext';
+import { TransactionType } from 'renderer/types/Types';
 
 function TransactionListItemRecord({ transaction }: TransactionType) {
-  const dispatch = useAppDispatch();
-  const state = useAppContext();
   return (
     <Flex gap="10" _hover={{ bg: 'brand.500' }} padding={2} borderRadius={5}>
-      <Flex align="center" gap="10">
-        <Flex direction="column">
-          <Text color="brand.200">{transaction.category}</Text>
-          <Text color="brand.200">{transaction.subcategory}</Text>
+      <Flex align="center" gap="10" flex="1">
+        <Flex
+          direction="column"
+          flex="1 1 auto"
+          overflow="hidden"
+          flex="0 0 70px"
+        >
+          <Text color="brand.200">{transaction.categoryDescription}</Text>
+          <Text color="brand.200" fontSize="sm">
+            {transaction.subcategoryDescription}
+          </Text>
         </Flex>
-        <Avatar src="https://bit.ly/sage-adebayo" size="sm" name="MS" />
-        <Text color="brand.100" fontSize="xl">
+        <Avatar size="sm" name={transaction.userDescription} />
+        <Text color="brand.100" fontSize="xl" flex="1">
+          {/* {JSON.stringify(transaction)} */}
           {transaction.description}
         </Text>
       </Flex>
-      <Spacer />
+
       <Text color="green.300">{transaction.amount}</Text>
     </Flex>
   );
@@ -59,8 +60,8 @@ function TransactionListItem() {
           <Text color="red.400">- € 227</Text>
         </Flex>
       </Flex>
-      {state.transaction.map((item) => (
-        <TransactionListItemRecord transaction={item} />
+      {state.transaction.map((el) => (
+        <TransactionListItemRecord transaction={el} />
       ))}
     </Flex>
   );

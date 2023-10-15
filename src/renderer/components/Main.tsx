@@ -30,21 +30,6 @@ export default function Main() {
       >
         <TransactionsView />
       </Flex>
-      <Flex
-        overflowY="scroll"
-        bg="brand.600"
-        grow="1"
-        direction="column"
-        paddingInline="5"
-        gap="5"
-        sx={{
-          '::-webkit-scrollbar': {
-            display: 'none',
-          },
-        }}
-      >
-        <AnalyticsView />
-      </Flex>
     </Flex>
   );
 }

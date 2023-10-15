@@ -1,36 +1,62 @@
 import { createContext, useContext, useReducer } from 'react';
-
-type AppStateUiType = {
-  openPopup: boolean;
-};
-
-export enum TransactionFlow {
-  INCOME,
-  EXPENSE,
-}
-
-type TransactionType = {
-  id: string;
-  amount: number;
-  userId: string;
-  userName: string;
-  description: string;
-  cateogryId: string;
-  category: string;
-  subcategoryId: string;
-  subcategory: string;
-  creationDate: number;
-  flow: TransactionFlow;
-};
-
-type AppStateType = {
-  transaction: TransactionType[];
-  ui: AppStateUiType;
-};
+import { ActionType, AppStateType, AppActionEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
   transaction: [],
-  ui: { openPopup: false },
+  directions: [
+    {
+      id: '1',
+      description: 'expense',
+    },
+    {
+      id: '2',
+      description: 'income',
+    },
+  ],
+  users: [
+    {
+      id: '1',
+      description: 'Manuel Speroni',
+    },
+    {
+      id: '2',
+      description: 'Matilde Valentini',
+    },
+    {
+      id: '3',
+      description: 'Home',
+    },
+  ],
+  categories: [
+    {
+      id: '1',
+      description: 'bollette',
+      subcategory: [
+        {
+          id: '1',
+          description: 'gas',
+        },
+        {
+          id: '2',
+          description: 'luce',
+        },
+      ],
+    },
+    {
+      id: '2',
+      description: 'spesa',
+      subcategory: [
+        {
+          id: '1',
+          description: 'cibo',
+        },
+        {
+          id: '2',
+          description: 'altro',
+        },
+      ],
+    },
+  ],
 };
 
 const AppContext = createContext<AppStateType>(initialApp);
@@ -57,51 +83,19 @@ export function useAppDispatch() {
   return useContext(AppDispatchContext);
 }
 
-export enum AppAction {
-  ADD_TRANSACTION,
-  EDIT_TRANSACTION,
-  REMOVE_TRANSACTION,
-}
-
-type ActionType = {
-  type: AppAction;
-  payload: any;
-};
-
 function appReducer(app: AppStateType, action: ActionType): AppStateType {
   switch (action.type) {
-    case AppAction.ADD_TRANSACTION: {
+    case AppActionEnum.ADD_TRANSACTION: {
       return {
         ...app,
-        transaction: [
-          ...app.transaction,
-          {
-            id: action.payload.id,
-            amount: action.payload.amount,
-            userId: action.payload.serId,
-            userName: action.payload.userName,
-            description: action.payload.description,
-            cateogryId: action.payload.cateogryId,
-            category: 'medone',
-            subcategoryId: action.payload.subcategoryId,
-            subcategory: action.payload.subcategory,
-            creationDate: Date.now(),
-            flow: action.payload.flow,
-          },
-        ],
+        transaction: [...app.transaction, action.transaction],
       };
     }
-    case AppAction.EDIT_TRANSACTION: {
-      return {
-        ...app,
-        ui: { ...app.ui, openPopup: true },
-      };
+    case AppActionEnum.EDIT_TRANSACTION: {
+      return { ...app };
     }
-    case AppAction.REMOVE_TRANSACTION: {
-      return {
-        ...app,
-        ui: { ...app.ui, openPopup: true },
-      };
+    case AppActionEnum.REMOVE_TRANSACTION: {
+      return { ...app };
     }
     default: {
       throw Error(`Unknown action: ${action.type}`);

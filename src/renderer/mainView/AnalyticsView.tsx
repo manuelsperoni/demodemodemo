@@ -12,6 +12,7 @@ import {
 
 import { IoAnalyticsSharp } from 'react-icons/io5';
 import { AiOutlineDown } from 'react-icons/ai';
+import AddTransactionFormNoModal from 'renderer/components/AddTransactionFormNoModal';
 
 function PeriodSelector() {
   return (
@@ -66,5 +67,5 @@ function TransactionHeader() {
 }
 
 export default function AnalitycsView() {
-  return <TransactionHeader />;
+  return <AddTransactionFormNoModal />;
 }
