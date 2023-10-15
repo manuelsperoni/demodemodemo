@@ -24,5 +24,6 @@
 - [ ] Add/remove/edit subcategory
 - [ ] Set currency
 
-## Data management- [ ] Save and retrive data in Local Json File 
+## Data management
+- [ ] Save and retrive data in Local Json File 
 - [ ] Online sync? 
