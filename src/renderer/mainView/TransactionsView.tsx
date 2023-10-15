@@ -15,7 +15,7 @@ import { TransactionType } from 'renderer/types/Types';
 function TransactionListItemRecord({ transaction }: TransactionType) {
   return (
     <Flex gap="10" _hover={{ bg: 'brand.500' }} padding={2} borderRadius={5}>
-      <Flex align="center" gap="10" flex="1">
+      <Flex align="center" gap="10" flex="1 0 auto" height="50px">
         <Flex
           direction="column"
           flex="1 1 auto"

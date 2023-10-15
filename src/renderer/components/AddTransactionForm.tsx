@@ -18,11 +18,13 @@ import {
   InputGroup,
   InputRightElement,
   useToast,
+  Avatar,
+  Divider,
 } from '@chakra-ui/react';
 import { TfiPlus } from 'react-icons/tfi';
 import { useId, useRef, useState } from 'react';
 import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
-import { addTransaction } from 'renderer/actions/Actions';
+import { addTransactionAction } from 'renderer/actions/Actions';
 import {
   CategoryType,
   SubcategoryType,
@@ -63,9 +65,9 @@ export default function AddTransactionForm() {
   );
   const id = useId();
 
-  function addTransactionHandler() {
+  function addTransaction() {
     dispatch(
-      addTransaction({
+      addTransactionAction({
         id,
         amount,
         userId,
@@ -126,7 +128,7 @@ export default function AddTransactionForm() {
                   }}
                 />
               </Box>
-
+              <Divider borderColor="brand.400" />
               <Box>
                 <FormLabel color="brand.200">Description</FormLabel>
 
@@ -138,6 +140,7 @@ export default function AddTransactionForm() {
                   placeholder="Description"
                 />
               </Box>
+              <Divider borderColor="brand.400" />
               <Box>
                 <FormLabel color="brand.200">Directions</FormLabel>
                 <Flex flex="1 1 auto" wrap="wrap" gap={2}>
@@ -151,7 +154,8 @@ export default function AddTransactionForm() {
                       borderColor="brand.400"
                       borderWidth={1}
                       _hover={{ bg: 'brand.400' }}
-                      borderRadius={5}
+                      borderRadius={10}
+                      paddingInline={10}
                       onClick={() => {
                         setDirectionDescription(el.description);
                         setDirectionId(el.id);
@@ -169,6 +173,7 @@ export default function AddTransactionForm() {
                   ))}
                 </Flex>
               </Box>
+              <Divider borderColor="brand.400" />
               <Box>
                 <FormLabel color="brand.200">Category</FormLabel>
                 <Flex flex="1 1 auto" wrap="wrap" gap={2}>
@@ -180,7 +185,8 @@ export default function AddTransactionForm() {
                       borderColor="brand.400"
                       borderWidth={1}
                       _hover={{ bg: 'brand.400' }}
-                      borderRadius={5}
+                      borderRadius={10}
+                      paddingInline={10}
                       onClick={() => {
                         setCategoryDescription(el.description);
                         setCategoryId(el.id);
@@ -198,23 +204,22 @@ export default function AddTransactionForm() {
                   ))}
                 </Flex>
               </Box>
-              <Box>
+              <Box marginLeft={10}>
                 <FormLabel color="brand.200">Subcategory</FormLabel>
                 <Flex flex="1 1 auto" wrap="wrap" gap={2}>
                   {subcategoryFromCategory(state.categories, categoryId).map(
                     (el) => (
                       <Center
                         key={el.id}
-                        bg={
-                          el.id === subcategoryId
-                            ? 'brand.accent'
-                            : 'transparent'
+                        borderColor={
+                          el.id === subcategoryId ? 'brand.accent' : 'brand.400'
                         }
+                        _hover={{ borderColor: 'brand.300' }}
+                        bg="transparent"
                         padding={2}
-                        borderColor="brand.400"
                         borderWidth={1}
-                        _hover={{ bg: 'brand.400' }}
-                        borderRadius={5}
+                        borderRadius={10}
+                        paddingInline={10}
                         onClick={() => {
                           setSubcategoryDescription(el.description);
                           setSubcategoryId(el.id);
@@ -222,9 +227,11 @@ export default function AddTransactionForm() {
                       >
                         <Text
                           color={
-                            el.id === subcategoryId ? 'brand.100' : 'brand.300'
+                            el.id === subcategoryId
+                              ? 'brand.accent'
+                              : 'brand.300'
                           }
-                          _hover={{ color: 'brand.100' }}
+                          _hover={{ color: 'brand.300' }}
                         >
                           {el.description}
                         </Text>
@@ -233,6 +240,7 @@ export default function AddTransactionForm() {
                   )}
                 </Flex>
               </Box>
+              <Divider borderColor="brand.400" />
               <Box>
                 <FormLabel color="brand.200">Amount</FormLabel>
                 <InputGroup>
@@ -251,34 +259,39 @@ export default function AddTransactionForm() {
                   />
                 </InputGroup>
               </Box>
+              <Divider borderColor="brand.400" />
               <Box>
                 <FormLabel color="brand.200">User</FormLabel>
                 <Flex flex="1 1 auto" wrap="wrap" gap={2}>
                   {state.users.map((el, num) => (
-                    <Center
+                    <Flex
+                      align="center"
+                      gap={2}
                       key={el.id}
                       padding={2}
                       bg={el.id == userId ? 'brand.accent' : 'transparent'}
                       borderColor="brand.400"
                       borderWidth={1}
                       _hover={{ bg: 'brand.400' }}
-                      borderRadius={5}
+                      borderRadius={1000}
+                      paddingInline={2}
                       onClick={() => {
                         setUserDescription(el.description);
                         setUserId(el.id);
                       }}
                     >
+                      <Avatar size="sm" name={el.description} />
                       <Text
                         color={el.id === userId ? 'brand.100' : 'brand.300'}
                         _hover={{ color: 'brand.100' }}
                       >
                         {el.description}
                       </Text>
-                    </Center>
+                    </Flex>
                   ))}
                 </Flex>
               </Box>
-              <Button variant="accent" onClick={() => addTransactionHandler()}>
+              <Button variant="accent" onClick={() => addTransaction()}>
                 Create
               </Button>
             </Stack>
