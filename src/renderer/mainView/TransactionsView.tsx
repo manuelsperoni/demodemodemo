@@ -9,30 +9,43 @@ import {
 } from '@chakra-ui/react';
 import { HiQueueList } from 'react-icons/hi2';
 import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi';
-import { useAppContext } from 'renderer/context/AppContext';
+import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
 import { TransactionType } from 'renderer/types/Types';
+import {
+  openEditTransactionAction,
+  selectTransactionAction,
+} from 'renderer/actions/Actions';
+import EditTransaction from 'renderer/components/EditTransaction';
 
 function TransactionListItemRecord({ transaction }: TransactionType) {
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
+
   return (
-    <Flex gap="10" _hover={{ bg: 'brand.500' }} padding={2} borderRadius={5}>
-      <Flex align="center" gap="10" flex="1 0 auto" height="50px">
-        <Flex
-          direction="column"
-          flex="1 1 auto"
-          overflow="hidden"
-          flex="0 0 70px"
-        >
+    <Flex
+      gap="20"
+      padding={2}
+      borderRadius={5}
+      align="center"
+      onClick={() => {
+        dispatch(selectTransactionAction(transaction));
+      }}
+      _hover={{ bg: 'brand.500' }}
+    >
+      <Flex align="center" gap="10" flex="0 0 100px" height="50px">
+        <Flex direction="column" flex="0 0 100px" overflow="hidden">
           <Text color="brand.200">{transaction.categoryDescription}</Text>
           <Text color="brand.200" fontSize="sm">
             {transaction.subcategoryDescription}
           </Text>
         </Flex>
         <Avatar size="sm" name={transaction.userDescription} />
-        <Text color="brand.100" fontSize="xl" flex="1">
-          {/* {JSON.stringify(transaction)} */}
-          {transaction.description}
-        </Text>
       </Flex>
+
+      <Text color="brand.100" fontSize="xl" flex="1 0 auto">
+        {/* {JSON.stringify(transaction)} */}
+        {transaction.description}
+      </Text>
 
       <Text color="green.300">{transaction.amount}</Text>
     </Flex>
@@ -126,11 +139,13 @@ function TransactionList() {
 }
 
 export default function ExpenseView() {
+  const state = useAppContext();
   return (
     <>
       <TransactionHeader />
       <TransactionSummary />
       <TransactionList />
+      <EditTransaction transaction={state.selectedTransaction} />
     </>
   );
 }

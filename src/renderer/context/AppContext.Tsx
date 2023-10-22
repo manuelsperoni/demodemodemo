@@ -1,7 +1,10 @@
 import { createContext, useContext, useReducer } from 'react';
-import { ActionType, AppStateType, AppActionEnum } from 'renderer/types/Types';
+import appReducer from 'renderer/reducers/Reducers';
+import { AppStateType } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
+  selectedTransaction: null,
+  editTransactionOpened: false,
   transaction: [],
   directions: [
     {
@@ -81,24 +84,4 @@ export function useAppContext() {
 
 export function useAppDispatch() {
   return useContext(AppDispatchContext);
-}
-
-function appReducer(app: AppStateType, action: ActionType): AppStateType {
-  switch (action.type) {
-    case AppActionEnum.ADD_TRANSACTION: {
-      return {
-        ...app,
-        transaction: [...app.transaction, action.transaction],
-      };
-    }
-    case AppActionEnum.EDIT_TRANSACTION: {
-      return { ...app };
-    }
-    case AppActionEnum.REMOVE_TRANSACTION: {
-      return { ...app };
-    }
-    default: {
-      throw Error(`Unknown action: ${action.type}`);
-    }
-  }
 }

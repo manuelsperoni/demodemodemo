@@ -25,13 +25,7 @@ import { TfiPlus } from 'react-icons/tfi';
 import { useId, useRef, useState } from 'react';
 import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
 import { addTransactionAction } from 'renderer/actions/Actions';
-import {
-  CategoryType,
-  SubcategoryType,
-  UserType,
-  DirectionType,
-  TransactionType,
-} from 'renderer/types/Types';
+import { v4 as uuidv4 } from 'uuid';
 import subcategoryFromCategory from '../helper/Helper';
 
 export default function AddTransactionForm() {
@@ -68,7 +62,7 @@ export default function AddTransactionForm() {
   function addTransaction() {
     dispatch(
       addTransactionAction({
-        id,
+        id: uuidv4(),
         amount,
         userId,
         userDescription,
@@ -106,7 +100,7 @@ export default function AddTransactionForm() {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size="6xl"
+        size="xl"
         finalFocusRef={finalRef}
         isCentered
       >

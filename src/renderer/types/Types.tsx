@@ -4,11 +4,14 @@ export enum AppActionEnum {
   ADD_TRANSACTION,
   EDIT_TRANSACTION,
   REMOVE_TRANSACTION,
+  SELECT_TRANSACTION,
+  CLOSE_EDIT_TRANSACTION,
 }
 export type ActionType = {
   type: AppActionEnum;
   transaction?: any;
   id?: string;
+  editTransactionOpened?: boolean;
 };
 export type UserType = {
   id: string;
@@ -57,4 +60,6 @@ export type AppStateType = {
   users: UserType[];
   categories: CategoryListType[];
   directions: DirectionType[];
+  selectedTransaction: TransactionType | null;
+  editTransactionOpened: bool;
 };
