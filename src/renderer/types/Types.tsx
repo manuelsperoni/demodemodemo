@@ -3,9 +3,9 @@ import { NormalModule } from 'webpack';
 export enum AppActionEnum {
   ADD_TRANSACTION,
   EDIT_TRANSACTION,
-  REMOVE_TRANSACTION,
   SELECT_TRANSACTION,
   CLOSE_EDIT_TRANSACTION,
+  DELETE_TRANSACTION,
 }
 export type ActionType = {
   type: AppActionEnum;

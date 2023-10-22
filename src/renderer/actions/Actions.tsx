@@ -25,3 +25,7 @@ export function editTransactionAction(
 export function closeEditTransactionAction(): ActionType {
   return { type: AppActionEnum.CLOSE_EDIT_TRANSACTION };
 }
+
+export function deleteTransactionAction(id: string): ActionType {
+  return { type: AppActionEnum.DELETE_TRANSACTION, id };
+}

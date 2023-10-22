@@ -25,8 +25,17 @@ export default function appReducer(
         editTransactionOpened: false,
       };
     }
-    case AppActionEnum.REMOVE_TRANSACTION: {
-      return { ...app };
+    case AppActionEnum.DELETE_TRANSACTION: {
+      const index = app.transaction.findIndex((el) => el.id === action.id);
+
+      const updatedTransactions = [...app.transaction];
+      updatedTransactions.splice(index, 1);
+      return {
+        ...app,
+        transaction: updatedTransactions,
+        editTransactionOpened: false,
+        selectedTransaction: null,
+      };
     }
     case AppActionEnum.SELECT_TRANSACTION: {
       return {

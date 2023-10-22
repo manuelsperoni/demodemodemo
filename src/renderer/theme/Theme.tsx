@@ -19,10 +19,17 @@ const AppTheme = extendTheme({
           borderColor: 'brand.400',
           _hover: { background: 'brand.400', color: 'brand.100' },
         },
+
         accent: {
           background: 'brand.accent',
           color: 'white',
           _hover: { background: 'brand.400', color: 'brand.100' },
+          _expanded: { background: 'brand.400', color: 'brand.100' },
+        },
+        warning: {
+          background: 'brand.400',
+          color: 'brand.300',
+          _hover: { background: 'red', color: 'brand.100' },
           _expanded: { background: 'brand.400', color: 'brand.100' },
         },
       },

@@ -1,12 +1,12 @@
 # Expense Tracker V2.0
 
 ## UI
-- [ ] Design a Dark mode only interface
+- [x] Design a Dark mode only interface
 
 ### Transaction
 - [x] Add transaction  
-- [ ] Edit transaction
-- [ ] Remove transaction 
+- [x] Edit transaction
+- [x] Remove transaction 
 
 ### Data Display
 - [ ] Filter transaction by by specific month in specific year

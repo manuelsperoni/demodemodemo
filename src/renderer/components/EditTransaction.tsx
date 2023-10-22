@@ -25,6 +25,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
 import {
   closeEditTransactionAction,
+  deleteTransactionAction,
   editTransactionAction,
 } from 'renderer/actions/Actions';
 import { TransactionType } from 'renderer/types/Types';
@@ -82,6 +83,17 @@ export default function EditTransaction(transaction: TransactionType) {
       setDirectionId(state.selectedTransaction.directionId);
     }
   }, [state]);
+
+  function deleteTransaction() {
+    dispatch(deleteTransactionAction(id));
+    toast({
+      title: 'Done',
+      description: 'Remove done',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    });
+  }
 
   function editTransaction() {
     dispatch(
@@ -292,8 +304,12 @@ export default function EditTransaction(transaction: TransactionType) {
                 ))}
               </Flex>
             </Box>
+
             <Button variant="accent" onClick={editTransaction}>
               Save
+            </Button>
+            <Button variant="warning" onClick={deleteTransaction}>
+              Remove
             </Button>
           </Stack>
         </ModalBody>
