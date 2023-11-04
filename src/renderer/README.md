@@ -9,10 +9,10 @@
 - [x] Remove transaction 
 
 ### Data Display
-- [ ] Filter transaction by by specific month in specific year
-- [ ] Group Transaction by day in a month
-- [ ] Filter by user
-
+- [x] Filter transaction by by specific month in specific year
+- [x] Group Transaction by day in a month
+- [x] Filter by single user
+- [x] Filter by multi user
 ### Report and Statistics
 - [ ] Generate category split graph and total amount by specific month in specific year
 - [ ] Generate category split graph and total amount by specific year

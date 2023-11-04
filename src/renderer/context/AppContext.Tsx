@@ -6,6 +6,7 @@ const initialApp: AppStateType = {
   selectedTransaction: null,
   editTransactionOpened: false,
   transaction: [],
+
   directions: [
     {
       id: '1',
@@ -30,6 +31,10 @@ const initialApp: AppStateType = {
       description: 'Home',
     },
   ],
+  user: {
+    id: '1',
+    description: 'Manuel Speroni',
+  },
   categories: [
     {
       id: '1',

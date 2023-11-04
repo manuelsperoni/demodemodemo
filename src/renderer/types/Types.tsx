@@ -10,17 +10,20 @@ export enum AppActionEnum {
   SELECT_MONTHLY_TIMESPAN,
   PREVIOUS_TIMESPAN,
   NEXT_TIMESPAN,
+  SELECT_USER,
 }
+export type UserType = {
+  id: string;
+  description: string;
+};
 export type ActionType = {
   type: AppActionEnum;
   transaction?: any;
   id?: string;
   editTransactionOpened?: boolean;
+  user?: UserType;
 };
-export type UserType = {
-  id: string;
-  description: string;
-};
+
 export type SubcategoryType = {
   id: string | null;
   description: string | null;
@@ -73,4 +76,5 @@ export type AppStateType = {
   editTransactionOpened: boolean;
   timespan: TimeSpanEnum;
   filter: any;
+  user: UserType;
 };

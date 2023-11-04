@@ -16,6 +16,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Avatar,
 } from '@chakra-ui/react';
 import { AiOutlineDown, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import {
@@ -32,6 +33,7 @@ import {
   nextTimeSpanAction,
   previousTimeSpanAction,
   selectMonthlyTimeSpanAction,
+  selectUserAction,
   selectYearlyTimeSpanAction,
 } from 'renderer/actions/Actions';
 import AddTransactionForm from './AddTransactionForm';
@@ -119,6 +121,8 @@ function PeriodSelector() {
 function FilterModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef(null);
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
 
   return (
     <>
@@ -137,7 +141,33 @@ function FilterModal() {
           <ModalHeader color="brand.200">Filter</ModalHeader>
           <ModalCloseButton color="brand.100" />
           <ModalBody>
-            <Text color="brand.100">Ciaone</Text>
+            <Flex flex="1 1 auto" wrap="wrap" gap={2}>
+              {state.users.map((el, num) => (
+                <Flex
+                  align="center"
+                  gap={2}
+                  key={el.id}
+                  padding={2}
+                  bg={el.id === state.user.id ? 'brand.accent' : 'transparent'}
+                  borderColor="brand.400"
+                  borderWidth={1}
+                  _hover={{ bg: 'brand.400' }}
+                  borderRadius={1000}
+                  paddingInline={2}
+                  onClick={() => {
+                    dispatch(selectUserAction(el));
+                  }}
+                >
+                  <Avatar size="sm" name={el.description} />
+                  <Text
+                    color={el.id === state.user.id ? 'brand.100' : 'brand.300'}
+                    _hover={{ color: 'brand.100' }}
+                  >
+                    {el.description}
+                  </Text>
+                </Flex>
+              ))}
+            </Flex>
           </ModalBody>
           <ModalFooter />
         </ModalContent>

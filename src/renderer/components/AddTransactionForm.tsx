@@ -38,9 +38,9 @@ export default function AddTransactionForm() {
   const [description, setDescription] = useState<string>('');
   const [amount, setAmount] = useState<string>(0);
   const [userDescription, setUserDescription] = useState<string>(
-    state.users[0].description
+    state.user.description
   );
-  const [userId, setUserId] = useState<string>(state.users[0].id);
+  const [userId, setUserId] = useState<string>(state.user.id);
 
   const [categoryDescription, setCategoryDescription] = useState<string>(
     state.categories[0].description

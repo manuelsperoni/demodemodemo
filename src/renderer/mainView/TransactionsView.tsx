@@ -11,15 +11,12 @@ import {
 import { HiQueueList } from 'react-icons/hi2';
 import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi';
 import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
-import { TimeSpanEnum, TransactionType } from 'renderer/types/Types';
-import {
-  openEditTransactionAction,
-  selectTransactionAction,
-} from 'renderer/actions/Actions';
+import { TimeSpanEnum, TransactionType, UserType } from 'renderer/types/Types';
+import { selectTransactionAction } from 'renderer/actions/Actions';
 import EditTransaction from 'renderer/components/EditTransaction';
 import { useMemo } from 'react';
 
-function TransactionListItemRecord({ transaction }: TransactionType) {
+function TransactionListItem({ transaction }: TransactionType) {
   const dispatch = useAppDispatch();
   const state = useAppContext();
 
@@ -79,7 +76,7 @@ function TransactionListGroup({ group }: any) {
         </Flex>
       </Flex>
       {group.transactions.map((el) => (
-        <TransactionListItemRecord transaction={el} />
+        <TransactionListItem transaction={el} />
       ))}
     </Flex>
   );
@@ -145,7 +142,8 @@ function TransactionList() {
 
   function generateGroupedListItem(
     transactions: TransactionType[],
-    timespan: TimeSpanEnum
+    timespan: TimeSpanEnum,
+    user: UserType
   ) {
     const filteredByDate = transactions.filter((el) => {
       if (timespan === TimeSpanEnum.MONTHLY) {
@@ -159,7 +157,9 @@ function TransactionList() {
       }
     });
 
-    const groupByDate = filteredByDate.reduce((arr: any, el: any) => {
+    const filteredByUser = filteredByDate.filter((el) => el.userId == user.id);
+
+    const groupByDate = filteredByUser.reduce((arr: any, el: any) => {
       if (!arr[el.date]) arr[el.date] = [];
       arr[el.date].push(el);
       return arr;
@@ -174,12 +174,14 @@ function TransactionList() {
     const sortedByDate = groupedByDateArray.sort((a, b) =>
       new Date(a.date) < new Date(b.date) ? 1 : -1
     );
+    console.log('recoputaaaaaaaaa');
     return sortedByDate;
   }
 
   const groupedTransaction = useMemo(
-    () => generateGroupedListItem(state.transaction, state.timespan),
-    [state.transaction, state.timespan]
+    () =>
+      generateGroupedListItem(state.transaction, state.timespan, state.user),
+    [state.transaction, state.timespan, state.user]
   );
 
   return (

@@ -11,8 +11,6 @@ export default function Main() {
   const dispatch = useAppDispatch();
   const state = useAppContext();
 
-  console.log('rerender');
-
   return (
     <Flex
       direction={{ base: 'column', lg: 'row' }}

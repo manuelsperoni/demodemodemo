@@ -9,8 +9,6 @@ export default function appReducer(
   app: AppStateType,
   action: ActionType
 ): AppStateType {
-  console.log(action.type);
-
   switch (action.type) {
     case AppActionEnum.ADD_TRANSACTION: {
       return {
@@ -89,7 +87,7 @@ export default function appReducer(
           ...app,
           filter: {
             ...app.filter,
-            month: 0,
+            month: 11,
             year: app.filter.year - 1,
           },
         };
@@ -107,6 +105,9 @@ export default function appReducer(
 
     case AppActionEnum.SELECT_YEARLY_TIMESPAN:
       return { ...app, timespan: TimeSpanEnum.YEARLY };
+
+    case AppActionEnum.SELECT_USER:
+      return { ...app, user: action.user };
 
     default: {
       throw Error(`Unknown action: ${action.type}`);

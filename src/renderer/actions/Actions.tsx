@@ -2,6 +2,7 @@ import {
   AppActionEnum,
   ActionType,
   TransactionType,
+  UserType,
 } from 'renderer/types/Types';
 
 export function addTransactionAction(transaction: TransactionType): ActionType {
@@ -44,4 +45,8 @@ export function selectMonthlyTimeSpanAction(): ActionType {
 
 export function selectYearlyTimeSpanAction(): ActionType {
   return { type: AppActionEnum.SELECT_YEARLY_TIMESPAN };
+}
+
+export function selectUserAction(user: UserType): ActionType {
+  return { type: AppActionEnum.SELECT_USER, user };
 }
