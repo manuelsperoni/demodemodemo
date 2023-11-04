@@ -6,6 +6,10 @@ export enum AppActionEnum {
   SELECT_TRANSACTION,
   CLOSE_EDIT_TRANSACTION,
   DELETE_TRANSACTION,
+  SELECT_YEARLY_TIMESPAN,
+  SELECT_MONTHLY_TIMESPAN,
+  PREVIOUS_TIMESPAN,
+  NEXT_TIMESPAN,
 }
 export type ActionType = {
   type: AppActionEnum;
@@ -55,11 +59,18 @@ export type TransactionType = {
   directionId: string;
 };
 
+export enum TimeSpanEnum {
+  YEARLY,
+  MONTHLY,
+}
+
 export type AppStateType = {
   transaction: TransactionType[];
   users: UserType[];
   categories: CategoryListType[];
   directions: DirectionType[];
   selectedTransaction: TransactionType | null;
-  editTransactionOpened: bool;
+  editTransactionOpened: boolean;
+  timespan: TimeSpanEnum;
+  filter: any;
 };

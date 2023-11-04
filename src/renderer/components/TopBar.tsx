@@ -26,6 +26,14 @@ import {
 } from 'react-icons/tfi';
 import { RiFilter3Line } from 'react-icons/ri';
 import { useRef } from 'react';
+import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
+import { TimeSpanEnum } from 'renderer/types/Types';
+import {
+  nextTimeSpanAction,
+  previousTimeSpanAction,
+  selectMonthlyTimeSpanAction,
+  selectYearlyTimeSpanAction,
+} from 'renderer/actions/Actions';
 import AddTransactionForm from './AddTransactionForm';
 
 function WindowsAction() {
@@ -43,30 +51,65 @@ function WindowsAction() {
 }
 
 function DateSelector() {
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
+  const monthLabel = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   return (
     <Flex justify="center" align="center" gap="5">
-      <IconButton aria-label="previous" icon={<AiOutlineLeft />} size="sm" />
+      <IconButton
+        aria-label="previous"
+        icon={<AiOutlineLeft />}
+        size="sm"
+        onClick={() => dispatch(previousTimeSpanAction())}
+      />
       <Text color="brand.100" fontWeight="extrabold" fontSize="xl">
-        Set 2023
+        {state.timespan == TimeSpanEnum.MONTHLY
+          ? `${monthLabel[state.filter.month]} ${state.filter.year}`
+          : state.filter.year}
       </Text>
-      <IconButton aria-label="next" icon={<AiOutlineRight />} size="sm" />
+      <IconButton
+        aria-label="next"
+        icon={<AiOutlineRight />}
+        size="sm"
+        onClick={() => dispatch(nextTimeSpanAction())}
+      />
     </Flex>
   );
 }
 
 function PeriodSelector() {
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<AiOutlineDown />} size="xs">
-        Monthly
+        {state.timespan == TimeSpanEnum.MONTHLY ? 'Monthly' : 'Yearly'}
       </MenuButton>
       <MenuList bg="brand.600" borderColor="brand.400">
         <MenuItem
           bg="brand.600"
           color="brand.300"
           _hover={{ bg: 'transparent', color: 'brand.100' }}
+          onClick={() => {
+            if (state.timespan === TimeSpanEnum.MONTHLY)
+              dispatch(selectYearlyTimeSpanAction());
+            else dispatch(selectMonthlyTimeSpanAction());
+          }}
         >
-          Yearly
+          {state.timespan == TimeSpanEnum.MONTHLY ? 'Yearly' : 'Monthly'}
         </MenuItem>
       </MenuList>
     </Menu>

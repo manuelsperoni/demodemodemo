@@ -29,3 +29,19 @@ export function closeEditTransactionAction(): ActionType {
 export function deleteTransactionAction(id: string): ActionType {
   return { type: AppActionEnum.DELETE_TRANSACTION, id };
 }
+
+export function nextTimeSpanAction(): ActionType {
+  return { type: AppActionEnum.NEXT_TIMESPAN };
+}
+
+export function previousTimeSpanAction(): ActionType {
+  return { type: AppActionEnum.PREVIOUS_TIMESPAN };
+}
+
+export function selectMonthlyTimeSpanAction(): ActionType {
+  return { type: AppActionEnum.SELECT_MONTHLY_TIMESPAN };
+}
+
+export function selectYearlyTimeSpanAction(): ActionType {
+  return { type: AppActionEnum.SELECT_YEARLY_TIMESPAN };
+}

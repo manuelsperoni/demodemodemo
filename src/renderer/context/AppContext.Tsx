@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import appReducer from 'renderer/reducers/Reducers';
-import { AppStateType } from 'renderer/types/Types';
+import { AppStateType, TimeSpanEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
   selectedTransaction: null,
@@ -60,6 +60,11 @@ const initialApp: AppStateType = {
       ],
     },
   ],
+  timespan: TimeSpanEnum.MONTHLY,
+  filter: {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+  },
 };
 
 const AppContext = createContext<AppStateType>(initialApp);
