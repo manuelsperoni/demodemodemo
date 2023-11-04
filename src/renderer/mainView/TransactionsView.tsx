@@ -6,16 +6,18 @@ import {
   Avatar,
   Badge,
   Icon,
+  filter,
 } from '@chakra-ui/react';
 import { HiQueueList } from 'react-icons/hi2';
 import { BiTrendingUp, BiTrendingDown } from 'react-icons/bi';
 import { useAppDispatch, useAppContext } from 'renderer/context/AppContext';
-import { TransactionType } from 'renderer/types/Types';
+import { TimeSpanEnum, TransactionType } from 'renderer/types/Types';
 import {
   openEditTransactionAction,
   selectTransactionAction,
 } from 'renderer/actions/Actions';
 import EditTransaction from 'renderer/components/EditTransaction';
+import { useMemo } from 'react';
 
 function TransactionListItemRecord({ transaction }: TransactionType) {
   const dispatch = useAppDispatch();
@@ -52,20 +54,23 @@ function TransactionListItemRecord({ transaction }: TransactionType) {
   );
 }
 
-function TransactionListItem() {
-  const state = useAppContext();
+function TransactionListGroup({ group }: any) {
+  console.log('sucaaa');
+
+  const dayLabel = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
   return (
     <Flex direction="column">
       {/* Header */}
       <Flex align="center" borderBottom="1px" borderColor="brand.400">
         <Flex gap={3} align="center">
           <Text fontSize="3xl" fontWeight="bold" color="brand.100">
-            27
+            {new Date(group.date).getDate()}
           </Text>
           <Badge size="" bg="brand.400" color="brand.200">
-            Lun
+            {dayLabel[new Date(group.date).getDay()]}
           </Badge>
-          <Text color="brand.300">07.2023</Text>
+          <Text color="brand.300">{group.date}</Text>
         </Flex>
         <Spacer />
         <Flex gap={10}>
@@ -73,7 +78,7 @@ function TransactionListItem() {
           <Text color="red.400">- € 227</Text>
         </Flex>
       </Flex>
-      {state.transaction.map((el) => (
+      {group.transactions.map((el) => (
         <TransactionListItemRecord transaction={el} />
       ))}
     </Flex>
@@ -135,7 +140,55 @@ function TransactionHeader() {
 }
 
 function TransactionList() {
-  return <TransactionListItem />;
+  const dispatch = useAppDispatch();
+  const state = useAppContext();
+
+  function generateGroupedListItem(
+    transactions: TransactionType[],
+    timespan: TimeSpanEnum
+  ) {
+    const filteredByDate = transactions.filter((el) => {
+      if (timespan === TimeSpanEnum.MONTHLY) {
+        return (
+          new Date(el.date).getMonth() === state.filter.month &&
+          new Date(el.date).getFullYear() === state.filter.year
+        );
+      }
+      if (timespan === TimeSpanEnum.YEARLY) {
+        return new Date(el.date).getFullYear() === state.filter.year;
+      }
+    });
+
+    const groupByDate = filteredByDate.reduce((arr: any, el: any) => {
+      if (!arr[el.date]) arr[el.date] = [];
+      arr[el.date].push(el);
+      return arr;
+    }, {});
+
+    const objectKeys = Object.keys(groupByDate);
+    const groupedByDateArray: any[] = [];
+    objectKeys.forEach((key) =>
+      groupedByDateArray.push({ date: key, transactions: groupByDate[key] })
+    );
+
+    const sortedByDate = groupedByDateArray.sort((a, b) =>
+      new Date(a.date) < new Date(b.date) ? 1 : -1
+    );
+    return sortedByDate;
+  }
+
+  const groupedTransaction = useMemo(
+    () => generateGroupedListItem(state.transaction, state.timespan),
+    [state.transaction, state.timespan]
+  );
+
+  return (
+    <>
+      {groupedTransaction.map((group) => (
+        <TransactionListGroup group={group} />
+      ))}
+    </>
+  );
 }
 
 export default function ExpenseView() {

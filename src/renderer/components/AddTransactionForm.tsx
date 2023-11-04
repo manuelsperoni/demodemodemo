@@ -57,6 +57,7 @@ export default function AddTransactionForm() {
   const [date, setDate] = useState<string>(
     new Date().toISOString().slice(0, 10)
   );
+
   const id = useId();
 
   function addTransaction() {
