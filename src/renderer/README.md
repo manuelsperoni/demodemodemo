@@ -1,29 +1,17 @@
-# Expense Tracker V2.0
+# All Purpose Tracker V1.0
 
-## UI
-- [x] Design a Dark mode only interface
+## Possible Field type
+- user 
+- currency
+- date
+- date
+- text
 
-### Transaction
-- [x] Add transaction  
-- [x] Edit transaction
-- [x] Remove transaction 
+For each field define
 
-### Data Display
-- [x] Filter transaction by by specific month in specific year
-- [x] Group Transaction by day in a month
-- [x] Filter by single user
-- [x] Filter by multi user
-### Report and Statistics
-- [ ] Generate category split graph and total amount by specific month in specific year
-- [ ] Generate category split graph and total amount by specific year
-- [ ] Generate category split graph and total amount by specific category
+- record-grid-header-field
+- record-grid-row-field-XX
+- record-grid-row-field-XX-menu
+ 
 
-### Customization
-- [ ] Add/remove/edit user
-- [ ] Add/remove/edit category
-- [ ] Add/remove/edit subcategory
-- [ ] Set currency
 
-## Data management
-- [ ] Save and retrive data in Local Json File 
-- [ ] Online sync? 

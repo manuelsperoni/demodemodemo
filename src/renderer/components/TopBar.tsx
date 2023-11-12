@@ -185,7 +185,7 @@ export default function TopBar() {
       align="center"
       paddingLeft={2}
       bg="brand.600"
-      flex="1 auto"
+      flex="0 0 50px"
     >
       <FilterModal />
       <Spacer />
