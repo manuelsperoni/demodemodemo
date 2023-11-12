@@ -1,7 +1,7 @@
 import { Flex, Spacer, Text } from '@chakra-ui/react';
-import TopBarWin from './topbar-win';
+import TopbarWinactions from './topbar-winactions';
 
-export default function TopBar() {
+export default function Topbar() {
   return (
     <Flex
       borderBottom="1px"
@@ -16,7 +16,7 @@ export default function TopBar() {
         Workspace
       </Text>
       <Spacer />
-      <TopBarWin />
+      <TopbarWinactions />
     </Flex>
   );
 }

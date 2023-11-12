@@ -1,14 +1,7 @@
-import {
-  GridItem,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Text,
-} from '@chakra-ui/react';
-import RecordGridUserRowMenu from './record-grid-user/record-grid-user-row-menu';
+import { GridItem, Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import RecordFieldUserRowMenu from './record-fields/record-field-user/record-field-user-row-menu';
 
-export default function RecordGridRow(record: any) {
+export default function RecordRow(record: any) {
   return (
     <>
       {[...Array(5)].map(() => (
@@ -29,7 +22,7 @@ export default function RecordGridRow(record: any) {
               Field name
             </MenuButton>
             <MenuList bg="brand.500" borderColor="brand.300" padding={2}>
-              <RecordGridUserRowMenu />
+              <RecordFieldUserRowMenu />
             </MenuList>
           </Menu>
         </GridItem>

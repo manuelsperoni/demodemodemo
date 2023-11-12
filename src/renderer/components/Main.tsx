@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import RecordGrid from './record-grid/record-grid';
+import Records from './records/records';
 
 export default function Main() {
   return (
@@ -14,7 +14,7 @@ export default function Main() {
         },
       }}
     >
-      <RecordGrid />
+      <Records />
     </Flex>
   );
 }

@@ -1,8 +1,7 @@
 import { Flex, IconButton } from '@chakra-ui/react';
-
 import { TfiMinus, TfiLayoutWidthFull, TfiClose } from 'react-icons/tfi';
 
-export default function TopBarWin() {
+export default function TopbarWinactions() {
   return (
     <Flex>
       <IconButton aria-label="minimize" icon={<TfiMinus />} borderRadius={0} />

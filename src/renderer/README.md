@@ -1,17 +1,14 @@
 # All Purpose Tracker V1.0
+This application allow user to track what the want, expense time exc.
+Is a Notion Database like function with Analystics.
 
 ## Possible Field type
-- user 
-- currency
-- date
-- date
-- text
+- user -> for user field
+- currency -> for expense or similar
+- date -> for creation and general datetime
+- time -> for time expenditure
+- text -> for note
+- tag -> for category
 
-For each field define
-
-- record-grid-header-field
-- record-grid-row-field-XX
-- record-grid-row-field-XX-menu
- 
 
 

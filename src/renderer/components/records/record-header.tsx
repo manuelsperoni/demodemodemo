@@ -7,7 +7,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-export default function RecordGridHeader() {
+export default function RecordHeader() {
   return (
     <>
       {[...Array(5)].map(() => (

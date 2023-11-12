@@ -1,5 +1,5 @@
 import { Flex, ChakraProvider } from '@chakra-ui/react';
-import TopBar from './components/topbar/topbar';
+import Topbar from './components/topbar/topbar';
 import Main from './components/main';
 import AppTheme from './theme/Theme';
 import { AppProvider } from './context/AppContext';
@@ -18,7 +18,7 @@ export default function App() {
             },
           }}
         >
-          <TopBar />
+          <Topbar />
           <Main />
         </Flex>
       </AppProvider>

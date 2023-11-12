@@ -1,6 +1,6 @@
 import { MenuItem, Flex, Avatar, Text } from '@chakra-ui/react';
 
-export default function RecordGridUserRowMenu() {
+export default function RecordFieldUserRowMenu() {
   return (
     <>
       {[...Array(2)].map(() => (

@@ -1,8 +1,8 @@
 import { Grid } from '@chakra-ui/react';
-import RecordGridHeader from 'renderer/components/record-grid/record-grid-header';
-import RecordGridItem from 'renderer/components/record-grid/record-grid-row';
+import RecordRow from './record-row';
+import RecordHeader from './record-header';
 
-export default function RecordGrid() {
+export default function Records() {
   return (
     <Grid
       templateColumns="repeat(10, 0fr)"
@@ -11,9 +11,9 @@ export default function RecordGrid() {
       borderWidth={1}
       borderColor="brand.400"
     >
-      <RecordGridHeader />
+      <RecordHeader />
       {[...Array(40)].map(() => (
-        <RecordGridItem />
+        <RecordRow />
       ))}
     </Grid>
   );
