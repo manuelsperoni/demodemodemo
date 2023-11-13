@@ -3,6 +3,7 @@ import Topbar from './components/topbar/topbar';
 import Main from './components/main';
 import AppTheme from './theme/Theme';
 import { AppProvider } from './context/AppContext';
+import BottomBar from './components/bottombar/bottombar';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         >
           <Topbar />
           <Main />
+          <BottomBar />
         </Flex>
       </AppProvider>
     </ChakraProvider>

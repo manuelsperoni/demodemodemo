@@ -9,11 +9,11 @@ export default function Topbar() {
       justify="right"
       align="center"
       paddingInline={4}
-      bg="brand.600"
+      bg="brand.500"
       flex="0 0 60px"
     >
-      <Text color="brand.100" fontSize="2xl">
-        Workspace
+      <Text color="brand.100" fontSize="xl">
+        Personal expenses
       </Text>
       <Spacer />
       <TopbarWinactions />

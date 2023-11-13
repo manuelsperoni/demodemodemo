@@ -12,7 +12,7 @@ export default function RecordRow(record: any) {
           borderColor="brand.400"
           borderRightWidth={1}
         >
-          <Menu>
+          <Menu strategy="fixed">
             <MenuButton
               w="200px"
               h="50px"

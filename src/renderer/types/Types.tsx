@@ -1,5 +1,3 @@
-import { NormalModule } from 'webpack';
-
 export enum AppActionEnum {
   ADD_TRANSACTION,
   EDIT_TRANSACTION,
@@ -67,14 +65,73 @@ export enum TimeSpanEnum {
   MONTHLY,
 }
 
-export type AppStateType = {
-  transaction: TransactionType[];
-  users: UserType[];
-  categories: CategoryListType[];
-  directions: DirectionType[];
-  selectedTransaction: TransactionType | null;
-  editTransactionOpened: boolean;
-  timespan: TimeSpanEnum;
-  filter: any;
-  user: UserType;
+// NEEEWWW
+
+export enum AvailableFieldEnum {
+  USER,
+  DATE,
+  TAG,
+  TEXT,
+  CURRENCY,
+  DURATION,
+}
+
+export type AvailableFieldType = {
+  description: string;
+  type: AvailableFieldEnum;
 };
+
+export type FieldType = {
+  description: string;
+  type: AvailableFieldEnum;
+  values: string[];
+};
+
+export type AppStateType = {
+  fields: FieldType[];
+  records: string[][];
+  availableFields: AvailableFieldType[];
+};
+
+// keyToIndex()
+
+// record.map(row,i=>
+//     <Row>
+//       row.map(field,j=>)
+//           <Field fields[i][j].description index=fields[i][j]>Field</Field>
+//     </Row>
+//        )
+
+const state: AppStateType = {
+  records: [[]],
+  fields: [
+    {
+      description: 'username',
+      values: ['a', 'b', 'c'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'tag',
+      values: ['a', 'b', 'c'],
+      type: AvailableFieldEnum.TAG,
+    },
+  ],
+  availableFields: [
+    {
+      description: 'user',
+      type: AvailableFieldEnum.USER,
+    },
+  ],
+};
+
+// test
+const test = [{ d: 1 }, { d: 2 }, { d: 3 }];
+
+// delete element with id
+const deleteTest = test.filter((el) => el.d !== 3);
+
+// update element with id
+const updateTest = test.map((el) => (el.d === 3 ? { ...el, d: 22 } : el));
+
+// create
+const createTest = [...test, { d: 5 }];
