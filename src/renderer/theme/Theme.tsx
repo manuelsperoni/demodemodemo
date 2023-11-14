@@ -5,12 +5,32 @@ const AppTheme = extendTheme({
   initialColorMode: 'dark', // 'dark' | 'light'
   useSystemColorMode: false,
   components: {
+    Divider: { variants: { custom: { border: '2px solid red' } } },
+
     Button: {
       variants: {
-        ghost: {
+        menuItem: {
           background: 'transparent',
           color: 'brand.200',
-          _hover: { background: 'brand.400', color: 'brand.100' },
+          justify: 'left',
+          align: 'left',
+          borderRadius: 0,
+          margin: 0,
+          paddingInline: 5,
+          fontWeight: 'normal',
+          _hover: { background: 'brand.300' },
+          _expanded: { background: 'brand.400', color: 'brand.100' },
+        },
+        menuItemRounded: {
+          background: 'transparent',
+          color: 'brand.200',
+          justify: 'left',
+          align: 'left',
+          borderRadius: 10,
+          margin: 0,
+          paddingInline: 5,
+          fontWeight: 'normal',
+          _hover: { background: 'brand.300' },
           _expanded: { background: 'brand.400', color: 'brand.100' },
         },
         outline: {
@@ -19,7 +39,6 @@ const AppTheme = extendTheme({
           borderColor: 'brand.400',
           _hover: { background: 'brand.400', color: 'brand.100' },
         },
-
         accent: {
           background: 'brand.accent',
           color: 'white',
