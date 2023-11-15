@@ -13,11 +13,13 @@ import {
   Divider,
   Button,
   MenuDivider,
+  VStack,
 } from '@chakra-ui/react';
 import { AiOutlineEllipsis } from 'react-icons/ai';
 import {
   BiArrowFromRight,
   BiArrowToBottom,
+  BiArrowToTop,
   BiCalendar,
   BiData,
   BiRightArrow,
@@ -80,17 +82,20 @@ export default function RecordHeader() {
           borderBottomWidth={1}
           borderColor="brand.400"
           borderRightWidth={1}
-          bg="brand.300"
         >
           {/* Main */}
           <Menu closeOnSelect={false} preventOverflow>
             <MenuButton
               w="200px"
               h="50px"
-              color="brand.200"
+              color="brand.100"
               _hover={{ background: 'brand.400' }}
             >
-              {el.description}
+              <Flex align="center" gap="5" justify="left" paddingInline={5}>
+                <BiUser color="brand.200" />
+                {el.description}
+                <Spacer />
+              </Flex>
             </MenuButton>
             <MenuList
               bg="brand.500"
@@ -100,6 +105,7 @@ export default function RecordHeader() {
               flexDirection="column"
               display="flex"
             >
+              {/* NAME */}
               <Flex height="40px" align="center" justify="start">
                 <Input
                   color="brand.100"
@@ -108,8 +114,8 @@ export default function RecordHeader() {
                   value={el.description}
                 />
               </Flex>
-              <Divider borderColor="brand.400" />
-              {/* Submenu edit field */}
+              <Divider borderColor="brand.300" />
+              {/* EDIT */}
               <Menu closeOnSelect={false} placement="right">
                 <MenuButton
                   w="100%"
@@ -130,7 +136,7 @@ export default function RecordHeader() {
                   flexDirection="column"
                   display="flex"
                 >
-                  <Flex direction="column" gap="0" padding="0" marginBlock={4}>
+                  <Flex direction="column" gap="2" padding="0" marginBlock={4}>
                     <Text color="brand.200" fontSize="xs" marginInline={5}>
                       TYPE
                     </Text>
@@ -159,13 +165,8 @@ export default function RecordHeader() {
                     </Flex>
                   </Flex>
                   <Divider borderColor="brand.300" />
-                  <Flex direction="column" gap="0" padding="0" marginBlock={4}>
-                    <Text
-                      color="brand.200"
-                      fontSize="xs"
-                      marginInline={5}
-                      marginBlock={2}
-                    >
+                  <Flex direction="column" gap="2" padding="0" marginBlock={4}>
+                    <Text color="brand.200" fontSize="xs" marginInline={5}>
                       OPTIONS
                     </Text>
                     <Flex direction="column" gap="0" paddingBlock="0">
@@ -194,15 +195,26 @@ export default function RecordHeader() {
                   </Flex>
                 </MenuList>
               </Menu>
-
-              <Button variant="menuItem" gap="5">
-                <BiArrowToBottom color="brand.100" /> Sort descending
-                <Spacer />
-              </Button>
-              <Button variant="menuItem" gap="5">
-                <BiTrash /> delete
-                <Spacer />
-              </Button>
+              <Divider borderColor="brand.300" />
+              {/* SORT */}
+              <Flex direction="column">
+                <Button variant="menuItem" gap="5">
+                  <BiArrowToBottom color="brand.100" /> Sort desc
+                  <Spacer />
+                </Button>
+                <Button variant="menuItem" gap="5">
+                  <BiArrowToTop color="brand.100" /> Sort asc
+                  <Spacer />
+                </Button>
+                <Divider borderColor="brand.300" />
+              </Flex>
+              {/* DELETE */}
+              <Flex direction="column">
+                <Button variant="menuItem" gap="5">
+                  <BiTrash /> delete
+                  <Spacer />
+                </Button>
+              </Flex>
             </MenuList>
           </Menu>
         </GridItem>

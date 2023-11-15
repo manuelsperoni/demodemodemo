@@ -6,11 +6,13 @@ import {
   MenuItem,
   Text,
 } from '@chakra-ui/react';
+import { useAppContext } from 'renderer/context/AppContext';
 
 export default function RecordEmpty() {
+  const state = useAppContext();
   return (
     <>
-      {[...Array(5)].map(() => (
+      {[...Array(state.fields.length)].map(() => (
         <GridItem
           w="200px"
           h="50px"

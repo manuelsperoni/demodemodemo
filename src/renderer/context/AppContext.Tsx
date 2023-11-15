@@ -15,6 +15,36 @@ const initialApp: AppStateType = {
       values: ['a', 'b', 'c'],
       type: AvailableFieldEnum.USER,
     },
+     {
+      description: 'username1',
+      values: ['manu', 'mati', 'pollo'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'username2',
+      values: ['a', 'b', 'c'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'username1',
+      values: ['manu', 'mati', 'pollo'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'username2',
+      values: ['a', 'b', 'c'],
+      type: AvailableFieldEnum.USER,
+    },
+     {
+      description: 'username1',
+      values: ['manu', 'mati', 'pollo'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'username2',
+      values: ['a', 'b', 'c'],
+      type: AvailableFieldEnum.USER,
+    },
   ],
   availableFields: [
     {

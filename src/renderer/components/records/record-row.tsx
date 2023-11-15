@@ -1,10 +1,13 @@
 import { GridItem, Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import { useAppContext } from 'renderer/context/AppContext';
 import RecordFieldUserRowMenu from './record-fields/record-field-user/record-field-user-row-menu';
 
 export default function RecordRow(record: any) {
+  const state = useAppContext();
+
   return (
     <>
-      {[...Array(4)].map(() => (
+      {[...Array(state.fields.length)].map(() => (
         <GridItem
           w="200px"
           h="50px"

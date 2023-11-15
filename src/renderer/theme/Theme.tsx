@@ -5,8 +5,6 @@ const AppTheme = extendTheme({
   initialColorMode: 'dark', // 'dark' | 'light'
   useSystemColorMode: false,
   components: {
-    Divider: { variants: { custom: { border: '2px solid red' } } },
-
     Button: {
       variants: {
         menuItem: {
@@ -21,18 +19,7 @@ const AppTheme = extendTheme({
           _hover: { background: 'brand.300' },
           _expanded: { background: 'brand.400', color: 'brand.100' },
         },
-        menuItemRounded: {
-          background: 'transparent',
-          color: 'brand.200',
-          justify: 'left',
-          align: 'left',
-          borderRadius: 10,
-          margin: 0,
-          paddingInline: 5,
-          fontWeight: 'normal',
-          _hover: { background: 'brand.300' },
-          _expanded: { background: 'brand.400', color: 'brand.100' },
-        },
+
         outline: {
           background: 'transparent',
           color: 'brand.200',
