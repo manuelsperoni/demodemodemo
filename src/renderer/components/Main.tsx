@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import Records from './records/records';
+import RawPreview from './raw-preview';
 
 export default function Main() {
   return (

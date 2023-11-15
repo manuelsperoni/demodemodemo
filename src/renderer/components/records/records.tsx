@@ -16,8 +16,8 @@ export default function Records() {
     >
       <RecordHeader />
       <RecordEmpty />
-      {[...Array(40)].map(() => (
-        <RecordRow />
+      {state.records.map((el) => (
+        <RecordRow record={el} />
       ))}
     </Grid>
   );

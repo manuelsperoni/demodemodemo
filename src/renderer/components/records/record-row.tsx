@@ -2,12 +2,12 @@ import { GridItem, Menu, MenuButton, MenuList } from '@chakra-ui/react';
 import { useAppContext } from 'renderer/context/AppContext';
 import RecordFieldUserRowMenu from './record-fields/record-field-user/record-field-user-row-menu';
 
-export default function RecordRow(record: any) {
+export default function RecordRow({ record }: any) {
   const state = useAppContext();
 
   return (
     <>
-      {[...Array(state.fields.length)].map(() => (
+      {state.fields.map((el) => (
         <GridItem
           w="200px"
           h="50px"
@@ -22,7 +22,7 @@ export default function RecordRow(record: any) {
               color="brand.200"
               _hover={{ background: 'brand.300' }}
             >
-              Field name
+              {record[el.description]}
             </MenuButton>
             <MenuList bg="brand.500" borderColor="brand.300" padding={2}>
               <RecordFieldUserRowMenu />
@@ -30,7 +30,8 @@ export default function RecordRow(record: any) {
           </Menu>
         </GridItem>
       ))}
-      <GridItem
+      {/* ACTIONS */}
+      {/* <GridItem
         w="50px"
         h="50px"
         borderBottomWidth={1}
@@ -50,7 +51,7 @@ export default function RecordRow(record: any) {
             <RecordFieldUserRowMenu />
           </MenuList>
         </Menu>
-      </GridItem>
+      </GridItem> */}
     </>
   );
 }

@@ -89,7 +89,7 @@ export type FieldType = {
 
 export type AppStateType = {
   fields: FieldType[];
-  records: string[][];
+  records: any[];
   availableFields: AvailableFieldType[];
 };
 

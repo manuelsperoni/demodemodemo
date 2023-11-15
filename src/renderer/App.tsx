@@ -4,6 +4,7 @@ import Main from './components/main';
 import AppTheme from './theme/Theme';
 import { AppProvider } from './context/AppContext';
 import BottomBar from './components/bottombar/bottombar';
+import RawPreview from './components/raw-preview';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         >
           <Topbar />
           <Main />
+          <RawPreview />
           <BottomBar />
         </Flex>
       </AppProvider>

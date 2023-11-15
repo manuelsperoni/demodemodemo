@@ -3,45 +3,28 @@ import appReducer from 'renderer/reducers/Reducers';
 import { AppStateType, AvailableFieldEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
-  records: [[]],
+  records: [
+    {
+      field1: 'manuel',
+      field2: 'manuel2',
+    },
+    {
+      field1: 'manuel',
+      field2: 'manuel2',
+    },
+    {
+      field1: 'manuel',
+      field2: 'manuel2',
+    },
+  ],
   fields: [
     {
-      description: 'username1',
+      description: 'field1',
       values: ['manu', 'mati', 'pollo'],
       type: AvailableFieldEnum.USER,
     },
     {
-      description: 'username2',
-      values: ['a', 'b', 'c'],
-      type: AvailableFieldEnum.USER,
-    },
-     {
-      description: 'username1',
-      values: ['manu', 'mati', 'pollo'],
-      type: AvailableFieldEnum.USER,
-    },
-    {
-      description: 'username2',
-      values: ['a', 'b', 'c'],
-      type: AvailableFieldEnum.USER,
-    },
-    {
-      description: 'username1',
-      values: ['manu', 'mati', 'pollo'],
-      type: AvailableFieldEnum.USER,
-    },
-    {
-      description: 'username2',
-      values: ['a', 'b', 'c'],
-      type: AvailableFieldEnum.USER,
-    },
-     {
-      description: 'username1',
-      values: ['manu', 'mati', 'pollo'],
-      type: AvailableFieldEnum.USER,
-    },
-    {
-      description: 'username2',
+      description: 'field2',
       values: ['a', 'b', 'c'],
       type: AvailableFieldEnum.USER,
     },
