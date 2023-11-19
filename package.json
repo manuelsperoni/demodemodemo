@@ -107,6 +107,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.11.2",
+    "react-virtualized": "^9.22.5",
+    "react-window": "^1.8.9",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

@@ -34,13 +34,13 @@ const initialApp: AppStateType = {
   ],
 };
 
-// for (let index = 0; index < 1; index++) {
-//   const newRecord = { _id: index };
-//   initialApp.fields.forEach((field) => {
-//     newRecord[field.description] = `desc${index}`;
-//   });
-//   initialApp.records.push(newRecord);
-// }
+for (let index = 0; index < 50; index++) {
+  const newRecord = { _id: index };
+  initialApp.fields.forEach((field) => {
+    newRecord[field.description] = `desc${index}`;
+  });
+  initialApp.records.push(newRecord);
+}
 const AppContext = createContext<AppStateType>(initialApp);
 
 const AppDispatchContext = createContext(null);

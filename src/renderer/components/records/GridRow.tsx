@@ -9,7 +9,10 @@ import {
   MenuItem,
   IconButton,
   Spacer,
+  effect,
+  Grid,
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { BiDotsHorizontalRounded, BiPlus, BiTrash } from 'react-icons/bi';
 import { editRecord, removeRecord } from 'renderer/actions/Actions';
 import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
@@ -18,6 +21,7 @@ export default function GridRow({ record }: any) {
   const state = useAppContext();
   const dispatch = useAppDispatch();
 
+  useEffect(() => console.log('row remount'), []);
   return (
     <>
       {state.fields.map((field) => (
@@ -59,7 +63,7 @@ export default function GridRow({ record }: any) {
           </Menu>
         </GridItem>
       ))}
-      {/* <GridItem
+      <GridItem
         w="50px"
         h="50px"
         borderBottomWidth={1}
@@ -97,7 +101,7 @@ export default function GridRow({ record }: any) {
             </Flex>
           </MenuList>
         </Menu>
-      </GridItem> */}
+      </GridItem>
     </>
   );
 }
