@@ -3,20 +3,7 @@ import appReducer from 'renderer/reducers/Reducers';
 import { AppStateType, AvailableFieldEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
-  records: [
-    {
-      field1: 'manuel',
-      field2: 'manuel2',
-    },
-    {
-      field1: 'manuel',
-      field2: 'manuel2',
-    },
-    {
-      field1: 'manuel',
-      field2: 'manuel2',
-    },
-  ],
+  records: [],
   fields: [
     {
       description: 'field1',
@@ -25,6 +12,16 @@ const initialApp: AppStateType = {
     },
     {
       description: 'field2',
+      values: ['a', 'b', 'c'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'field3',
+      values: ['manu', 'mati', 'pollo'],
+      type: AvailableFieldEnum.USER,
+    },
+    {
+      description: 'field4',
       values: ['a', 'b', 'c'],
       type: AvailableFieldEnum.USER,
     },
@@ -37,6 +34,13 @@ const initialApp: AppStateType = {
   ],
 };
 
+// for (let index = 0; index < 1; index++) {
+//   const newRecord = { _id: index };
+//   initialApp.fields.forEach((field) => {
+//     newRecord[field.description] = `desc${index}`;
+//   });
+//   initialApp.records.push(newRecord);
+// }
 const AppContext = createContext<AppStateType>(initialApp);
 
 const AppDispatchContext = createContext(null);

@@ -1,52 +1,98 @@
-import {
-  AppActionEnum,
-  ActionType,
-  TransactionType,
-  UserType,
-} from 'renderer/types/Types';
+import { randomUUID } from 'crypto';
+import { ActionEnum, ActionType } from 'renderer/reducers/Reducers';
 
-export function addTransactionAction(transaction: TransactionType): ActionType {
-  return { type: AppActionEnum.ADD_TRANSACTION, transaction };
-}
-export function removeTransactionAction(id: string): ActionType {
-  return { type: AppActionEnum.ADD_TRANSACTION, id };
-}
-
-export function selectTransactionAction(
-  transaction: TransactionType
+export function editFieldDescription(
+  currentDescription: string,
+  updatedDescription: string
 ): ActionType {
-  return { type: AppActionEnum.SELECT_TRANSACTION, transaction };
+  return {
+    type: ActionEnum.EDIT_FIELD_DESCRIPTION,
+    payload: {
+      currentDescription,
+      updatedDescription,
+    },
+  };
 }
-export function editTransactionAction(
-  transaction: TransactionType
+
+export function editFieldOption(
+  fieldDescription: string,
+  currentOption: string,
+  updatedOption: string
 ): ActionType {
-  return { type: AppActionEnum.EDIT_TRANSACTION, transaction };
+  return {
+    type: ActionEnum.EDIT_FIELD_OPTION,
+    payload: {
+      fieldDescription,
+      currentOption,
+      updatedOption,
+    },
+  };
 }
 
-export function closeEditTransactionAction(): ActionType {
-  return { type: AppActionEnum.CLOSE_EDIT_TRANSACTION };
+export function removeFieldOption(
+  fieldDescription: string,
+  option: string
+): ActionType {
+  return {
+    type: ActionEnum.REMOVE_FIELD_OPTION,
+    payload: {
+      fieldDescription,
+      option,
+    },
+  };
 }
 
-export function deleteTransactionAction(id: string): ActionType {
-  return { type: AppActionEnum.DELETE_TRANSACTION, id };
+export function removeField(fieldDescription: string): ActionType {
+  return {
+    type: ActionEnum.REMOVE_FIELD,
+    payload: {
+      fieldDescription,
+    },
+  };
 }
 
-export function nextTimeSpanAction(): ActionType {
-  return { type: AppActionEnum.NEXT_TIMESPAN };
+export function addFieldOption(
+  fieldDescription: string,
+  option: string
+): ActionType {
+  return {
+    type: ActionEnum.ADD_FIELD_OPTION,
+    payload: {
+      fieldDescription,
+      option,
+    },
+  };
 }
 
-export function previousTimeSpanAction(): ActionType {
-  return { type: AppActionEnum.PREVIOUS_TIMESPAN };
+export function addRecord(): ActionType {
+  return {
+    type: ActionEnum.ADD_RECORD,
+    payload: {
+      _id: crypto.randomUUID(),
+    },
+  };
 }
 
-export function selectMonthlyTimeSpanAction(): ActionType {
-  return { type: AppActionEnum.SELECT_MONTHLY_TIMESPAN };
+export function removeRecord(_id: string): ActionType {
+  return {
+    type: ActionEnum.REMOVE_RECORD,
+    payload: {
+      _id,
+    },
+  };
 }
 
-export function selectYearlyTimeSpanAction(): ActionType {
-  return { type: AppActionEnum.SELECT_YEARLY_TIMESPAN };
-}
-
-export function selectUserAction(user: UserType): ActionType {
-  return { type: AppActionEnum.SELECT_USER, user };
+export function editRecord(
+  fieldDescription: string,
+  _id: string,
+  value: string
+): ActionType {
+  return {
+    type: ActionEnum.EDIT_RECORD,
+    payload: {
+      fieldDescription,
+      _id,
+      value,
+    },
+  };
 }

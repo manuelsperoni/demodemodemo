@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
-import Records from './records/records';
-import RawPreview from './raw-preview';
+
+import DataGrid from './records/DataGrid';
 
 export default function Main() {
   return (
@@ -15,7 +15,7 @@ export default function Main() {
         },
       }}
     >
-      <Records />
+      <DataGrid />
     </Flex>
   );
 }

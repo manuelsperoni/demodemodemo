@@ -20,11 +20,33 @@ const AppTheme = extendTheme({
           _expanded: { background: 'brand.400', color: 'brand.100' },
         },
 
+        menuItemRounded: {
+          background: 'transparent',
+          color: 'brand.200',
+          justify: 'left',
+          align: 'left',
+          borderRadius: 5,
+          margin: 0,
+          paddingInline: 5,
+          fontWeight: 'normal',
+          _hover: { background: 'brand.300' },
+          _expanded: { background: 'brand.400', color: 'brand.100' },
+        },
+
         outline: {
           background: 'transparent',
           color: 'brand.200',
           borderColor: 'brand.400',
           _hover: { background: 'brand.400', color: 'brand.100' },
+        },
+        ghost: {
+          background: 'transparent',
+          color: 'brand.accent',
+          fontWeight: 'normal',
+          _hover: { background: 'brand.300' },
+          _expanded: { background: 'brand.400', color: 'brand.100' },
+          _focuesed: { background: 'brand.400', color: 'brand.100' },
+          _pressed: { background: 'brand.400', color: 'brand.100' },
         },
         accent: {
           background: 'brand.accent',

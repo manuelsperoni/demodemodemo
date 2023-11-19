@@ -3,7 +3,7 @@ export enum AppActionEnum {
   EDIT_TRANSACTION,
   SELECT_TRANSACTION,
   CLOSE_EDIT_TRANSACTION,
-  DELETE_TRANSACTION,
+  REMOVE_TRANSACTION,
   SELECT_YEARLY_TIMESPAN,
   SELECT_MONTHLY_TIMESPAN,
   PREVIOUS_TIMESPAN,
@@ -14,13 +14,13 @@ export type UserType = {
   id: string;
   description: string;
 };
-export type ActionType = {
-  type: AppActionEnum;
-  transaction?: any;
-  id?: string;
-  editTransactionOpened?: boolean;
-  user?: UserType;
-};
+// export type ActionType = {
+//   type: AppActionEnum;
+//   transaction?: any;
+//   id?: string;
+//   editTransactionOpened?: boolean;
+//   user?: UserType;
+// };
 
 export type SubcategoryType = {
   id: string | null;

@@ -3,7 +3,7 @@ import { useAppContext } from 'renderer/context/AppContext';
 
 function getHighlightedText(text, highlight) {
   // Split on highlight term and include term into parts, ignore case
-  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  const parts = text.split(new RegExp(`".*?"`, 'gi'));
   return (
     <span>
       {' '}
@@ -16,7 +16,7 @@ function getHighlightedText(text, highlight) {
               : {}
           }
         >
-          {part}
+          {`a${part}b`}
         </span>
       ))}{' '}
     </span>
@@ -39,9 +39,7 @@ export default function RawPreview() {
       padding={10}
     >
       <pre>
-        <code lang="javascript">
-          {getHighlightedText(JSON.stringify(state, null, 4), '"')}
-        </code>
+        <code lang="javascript">{JSON.stringify(state, null, 4)}</code>
       </pre>
     </Flex>
   );
