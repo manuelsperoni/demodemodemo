@@ -56,7 +56,7 @@ export default function GridRow({ record }: any) {
                     dispatch(editRecord(field.description, record._id, value))
                   }
                 >
-                  <Button variant="menuItemRounded">{value}</Button>
+                  {value}
                 </MenuItem>
               ))}
             </MenuList>

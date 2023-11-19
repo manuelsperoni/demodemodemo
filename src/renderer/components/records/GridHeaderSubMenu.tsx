@@ -125,7 +125,7 @@ export default function GridHeaderSubMenu({ field }) {
                     variant="menuItemRounded"
                     gap="5"
                     onClick={() =>
-                      dispatch(removeFieldOption(field.description, el))
+                      dispatch(removeFieldOption(field.description, value))
                     }
                   >
                     <BiTrash /> Delete
