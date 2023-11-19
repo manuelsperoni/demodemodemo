@@ -34,7 +34,7 @@ const initialApp: AppStateType = {
   ],
 };
 
-for (let index = 0; index < 50; index++) {
+for (let index = 0; index < 20; index++) {
   const newRecord = { _id: index };
   initialApp.fields.forEach((field) => {
     newRecord[field.description] = `desc${index}`;

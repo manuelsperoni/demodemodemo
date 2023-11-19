@@ -72,7 +72,7 @@ export default function appReducer(
   app: AppStateType,
   action: ActionType
 ): AppStateType {
-  console.log(Date.now());
+  console.log(action.type);
   switch (action.type) {
     case ActionEnum.EDIT_FIELD_DESCRIPTION:
       return {
@@ -104,7 +104,6 @@ export default function appReducer(
                 return value;
               }),
             };
-
           return field;
         }),
       };

@@ -25,6 +25,10 @@ export default function GridRow({ record }: any) {
   return (
     <>
       {state.fields.map((field) => (
+        // <GridItem key={field.description} color="white" padding={10}>
+        //   {' '}
+        //   {record._id}
+        // </GridItem>
         <GridItem
           key={field.description}
           w="200px"
@@ -33,7 +37,7 @@ export default function GridRow({ record }: any) {
           borderColor="brand.400"
           borderRightWidth={1}
         >
-          <Menu strategy="fixed">
+          <Menu strategy="fixed" isLazy>
             <MenuButton
               w="200px"
               h="50px"

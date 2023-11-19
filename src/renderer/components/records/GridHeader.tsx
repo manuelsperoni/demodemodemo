@@ -59,11 +59,13 @@ export default function GridHeader() {
             closeOnSelect={false}
             preventOverflow
             onOpen={() => setFieldDescription(field.description)}
-            onClose={() =>
-              dispatch(
-                editFieldDescription(field.description, fieldDescription)
-              )
-            }
+            onClose={() => {
+              fieldDescription != field.description
+                ? dispatch(
+                    editFieldDescription(field.description, fieldDescription)
+                  )
+                : null;
+            }}
           >
             <MenuButton
               w="200px"
