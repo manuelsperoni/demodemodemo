@@ -28,7 +28,10 @@ export default function GridRow({ record }: any) {
         <Flex borderRightWidth={1} borderColor="brand.400">
           <Menu strategy="fixed" isLazy>
             <MenuButton w="200px" h="50px">
-              {record[field.description]}
+              <Flex align="center" gap={2} justify="start" ml="4">
+                <Avatar name={record[field.description]} mr="12px" size="sm" />
+                <Text>{record[field.description]}</Text>
+              </Flex>
             </MenuButton>
             <MenuList>
               {field.values.map((value) => (
