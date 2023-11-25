@@ -85,12 +85,14 @@ export type FieldType = {
   description: string;
   type: AvailableFieldEnum;
   values: string[];
+  id: string;
 };
 
 export type AppStateType = {
   fields: FieldType[];
   records: any[];
   availableFields: AvailableFieldType[];
+  fieldOnEdit: FieldType | null;
 };
 
 // keyToIndex()

@@ -1,29 +1,35 @@
+import { randomUUID } from 'crypto';
 import { createContext, useContext, useReducer } from 'react';
 import appReducer from 'renderer/reducers/Reducers';
 import { AppStateType, AvailableFieldEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
   records: [],
+  fieldOnEdit: null,
   fields: [
     {
       description: 'field1',
       values: ['manu', 'mati', 'pollo'],
       type: AvailableFieldEnum.USER,
+      id: crypto.randomUUID(),
     },
     {
       description: 'field2',
       values: ['a', 'b', 'c'],
       type: AvailableFieldEnum.USER,
+      id: crypto.randomUUID(),
     },
     {
       description: 'field3',
       values: ['manu', 'mati', 'pollo'],
       type: AvailableFieldEnum.USER,
+      id: crypto.randomUUID(),
     },
     {
       description: 'field4',
       values: ['a', 'b', 'c'],
       type: AvailableFieldEnum.USER,
+      id: crypto.randomUUID(),
     },
   ],
   availableFields: [
@@ -34,8 +40,8 @@ const initialApp: AppStateType = {
   ],
 };
 
-for (let index = 0; index < 20; index++) {
-  const newRecord = { _id: index };
+for (let index = 0; index < 100; index++) {
+  const newRecord = { id: index };
   initialApp.fields.forEach((field) => {
     newRecord[field.description] = `desc${index}`;
   });

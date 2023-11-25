@@ -23,41 +23,19 @@ export default function GridRow({ record }: any) {
 
   useEffect(() => console.log('row remount'), []);
   return (
-    <>
+    <Flex direction="row" borderBottomWidth={1} borderColor="brand.400">
       {state.fields.map((field) => (
-        // <GridItem key={field.description} color="white" padding={10}>
-        //   {' '}
-        //   {record._id}
-        // </GridItem>
-        <GridItem
-          key={field.description}
-          w="200px"
-          h="50px"
-          borderBottomWidth={1}
-          borderColor="brand.400"
-          borderRightWidth={1}
-        >
+        <Flex borderRightWidth={1} borderColor="brand.400">
           <Menu strategy="fixed" isLazy>
-            <MenuButton
-              w="200px"
-              h="50px"
-              color="brand.200"
-              _hover={{ background: 'brand.300' }}
-            >
+            <MenuButton w="200px" h="50px">
               {record[field.description]}
             </MenuButton>
-            <MenuList
-              bg="brand.500"
-              borderColor="brand.300"
-              padding={2}
-              flexDirection="column"
-              display="flex"
-            >
+            <MenuList>
               {field.values.map((value) => (
                 <MenuItem
                   key={value}
                   onClick={() =>
-                    dispatch(editRecord(field.description, record._id, value))
+                    dispatch(editRecord(field.description, record.id, value))
                   }
                 >
                   {value}
@@ -65,47 +43,21 @@ export default function GridRow({ record }: any) {
               ))}
             </MenuList>
           </Menu>
-        </GridItem>
+        </Flex>
       ))}
-      <GridItem
-        w="50px"
-        h="50px"
-        borderBottomWidth={1}
-        borderColor="brand.400"
-        borderRightWidth={1}
-      >
+      <Flex height="50" flex="0 0 100px" justify="center" align="center">
         <Menu strategy="fixed" closeOnSelect>
-          <MenuButton
-            w="50px"
-            h="50px"
-            color="brand.200"
-            _hover={{ background: 'brand.300' }}
-            display="flex"
-            alignContent="center"
-            justifyContent="center"
-          >
-            <BiDotsHorizontalRounded />
-          </MenuButton>
-          <MenuList
-            bg="brand.500"
-            borderColor="brand.300"
-            padding={2}
-            flexDirection="column"
-            display="flex"
-          >
-            <Flex direction="column">
-              <Button
-                variant="menuItemRounded"
-                gap="5"
-                onClick={() => dispatch(removeRecord(record._id))}
-              >
-                <BiTrash /> Delete
-                <Spacer />
-              </Button>
-            </Flex>
+          <MenuButton as={IconButton} icon={<BiDotsHorizontalRounded />} />
+          <MenuList>
+            <MenuItem
+              icon={<BiTrash />}
+              onClick={() => dispatch(removeRecord(record.id))}
+            >
+              Delete
+            </MenuItem>
           </MenuList>
         </Menu>
-      </GridItem>
-    </>
+      </Flex>
+    </Flex>
   );
 }

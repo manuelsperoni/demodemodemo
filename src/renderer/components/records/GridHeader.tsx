@@ -13,12 +13,24 @@ import {
   Divider,
   Button,
   Grid,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  Icon,
 } from '@chakra-ui/react';
 import { AiOutlineEllipsis } from 'react-icons/ai';
 import {
   BiArrowToBottom,
   BiArrowToTop,
   BiCalendar,
+  BiDotsHorizontal,
+  BiEdit,
   BiPlus,
   BiRuler,
   BiText,
@@ -26,79 +38,41 @@ import {
   BiUser,
 } from 'react-icons/bi';
 import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
-import { AvailableFieldEnum, FieldType } from 'renderer/types/Types';
-import { addRecord, editFieldDescription } from 'renderer/actions/Actions';
+import {
+  addRecord,
+  editFieldDescription,
+  openEditFieldAction,
+  removeFieldAction,
+} from 'renderer/actions/Actions';
 import { useState } from 'react';
-import GridHeaderMenu from './GridHeaderMenu';
-import GridHeaderSubMenu from './GridHeaderSubMenu';
 
 export default function GridHeader() {
   const state = useAppContext();
   const dispatch = useAppDispatch();
-  const [fieldDescription, setFieldDescription] = useState('');
 
   return (
-    <Grid
-      templateColumns={`repeat(${state.fields.length + 1}, 0fr)`}
-      gap={0}
-      autoFlow="unset"
-      borderWidth={1}
-      borderColor="brand.400"
-    >
+    <Flex direction="row" borderBottomWidth={1} borderColor="brand.400">
       {state.fields.map((field, index) => (
-        <GridItem
-          key={index}
-          w="200px"
-          h="50px"
-          borderBottomWidth={1}
-          borderColor="brand.400"
+        <Flex
+          key={field.id}
+          direction="row"
+          flex="0 0 200px"
+          justify="space-evenly"
+          align="center"
           borderRightWidth={1}
+          borderColor="brand.400"
         >
-          {/* Main */}
-          <Menu
-            closeOnSelect={false}
-            preventOverflow
-            onOpen={() => setFieldDescription(field.description)}
-            onClose={() => {
-              fieldDescription != field.description
-                ? dispatch(
-                    editFieldDescription(field.description, fieldDescription)
-                  )
-                : null;
-            }}
-          >
-            <MenuButton
-              w="200px"
-              h="50px"
-              color="brand.100"
-              _hover={{ background: 'brand.400' }}
-            >
-              <Flex align="center" gap="5" justify="left" paddingInline={5}>
-                <BiUser color="brand.200" />
-                {field.description}
-                <Spacer />
-              </Flex>
-            </MenuButton>
-            <MenuList
-              bg="brand.500"
-              borderColor="brand.300"
-              padding={0}
-              overflow="hidden"
-              flexDirection="column"
-              display="flex"
-            >
-              <Flex height="40px" align="center" justify="start">
-                <Input
-                  color="brand.100"
-                  width="100%"
-                  borderColor="transparent"
-                  value={fieldDescription}
-                  onChange={(e) => setFieldDescription(e.target.value)}
-                />
-              </Flex>
-              <Divider borderColor="brand.300" />
-              {/* EDIT */}
-              <Menu closeOnSelect={false} placement="right">
+          <Icon as={BiUser} color="brand.100" />
+          <Text color="brand.200">{field.description}</Text>
+          <Menu width="50" height="50" closeOnSelect={false} preventOverflow>
+            <MenuButton as={IconButton} icon={<BiDotsHorizontal />} />
+            <MenuList>
+              <MenuItem
+                icon={<BiEdit />}
+                onClick={() => dispatch(openEditFieldAction(field))}
+              >
+                Edit
+                {/* <Menu closeOnSelect={false} placement="right">
                 <MenuButton
                   w="100%"
                   h="40px"
@@ -120,48 +94,28 @@ export default function GridHeader() {
                 >
                   <GridHeaderSubMenu field={field} />
                 </MenuList>
-              </Menu>
-              <Divider borderColor="brand.300" />
-              {/* SORT */}
-              <Flex direction="column">
-                <Button variant="menuItem" gap="5">
-                  <BiArrowToBottom color="brand.100" /> Sort desc
-                  <Spacer />
-                </Button>
-                <Button variant="menuItem" gap="5">
-                  <BiArrowToTop color="brand.100" /> Sort asc
-                  <Spacer />
-                </Button>
-                <Divider borderColor="brand.300" />
-              </Flex>
-              {/* DELETE */}
-              <Flex direction="column">
-                <Button
-                  variant="menuItem"
-                  gap="5"
-                  onClick={() => dispatch(removeField(field.description))}
-                >
-                  <BiTrash /> delete
-                  <Spacer />
-                </Button>
-              </Flex>
+              </Menu> */}
+              </MenuItem>
+              <MenuItem icon={<BiArrowToBottom />}>Sort desc </MenuItem>
+              <MenuItem icon={<BiArrowToTop />}>Sort asc </MenuItem>
+              <MenuItem
+                onClick={() => dispatch(removeFieldAction(field.id))}
+                icon={<BiTrash />}
+              >
+                delete
+              </MenuItem>
             </MenuList>
           </Menu>
-        </GridItem>
+        </Flex>
       ))}
-      <GridItem
-        h="50px"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Flex height="50" flex="0 0 100px" justify="center" align="center">
         <IconButton
           aria-label="add record"
           onClick={() => dispatch(addRecord())}
           icon={<BiPlus />}
           variant="ghost"
         />
-      </GridItem>
-    </Grid>
+      </Flex>
+    </Flex>
   );
 }

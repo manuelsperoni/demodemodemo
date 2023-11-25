@@ -1,64 +1,59 @@
 import { randomUUID } from 'crypto';
 import { ActionEnum, ActionType } from 'renderer/reducers/Reducers';
+import { FieldType } from 'renderer/types/Types';
 
 export function editFieldDescription(
-  currentDescription: string,
+  id: string,
   updatedDescription: string
 ): ActionType {
   return {
     type: ActionEnum.EDIT_FIELD_DESCRIPTION,
     payload: {
-      currentDescription,
+      id,
       updatedDescription,
     },
   };
 }
 
 export function editFieldOption(
-  fieldDescription: string,
+  id: string,
   currentOption: string,
   updatedOption: string
 ): ActionType {
   return {
     type: ActionEnum.EDIT_FIELD_OPTION,
     payload: {
-      fieldDescription,
+      id,
       currentOption,
       updatedOption,
     },
   };
 }
 
-export function removeFieldOption(
-  fieldDescription: string,
-  option: string
-): ActionType {
+export function removeFieldOption(id: string, option: string): ActionType {
   return {
     type: ActionEnum.REMOVE_FIELD_OPTION,
     payload: {
-      fieldDescription,
+      id,
       option,
     },
   };
 }
 
-export function removeField(fieldDescription: string): ActionType {
+export function removeFieldAction(id: string): ActionType {
   return {
     type: ActionEnum.REMOVE_FIELD,
     payload: {
-      fieldDescription,
+      id,
     },
   };
 }
 
-export function addFieldOption(
-  fieldDescription: string,
-  option: string
-): ActionType {
+export function addFieldOption(id: string, option: string): ActionType {
   return {
     type: ActionEnum.ADD_FIELD_OPTION,
     payload: {
-      fieldDescription,
+      id,
       option,
     },
   };
@@ -68,31 +63,40 @@ export function addRecord(): ActionType {
   return {
     type: ActionEnum.ADD_RECORD,
     payload: {
-      _id: crypto.randomUUID(),
+      id: crypto.randomUUID(),
     },
   };
 }
 
-export function removeRecord(_id: string): ActionType {
+export function removeRecord(id: string): ActionType {
   return {
     type: ActionEnum.REMOVE_RECORD,
     payload: {
-      _id,
+      id,
     },
   };
 }
 
 export function editRecord(
   fieldDescription: string,
-  _id: string,
+  id: string,
   value: string
 ): ActionType {
   return {
     type: ActionEnum.EDIT_RECORD,
     payload: {
       fieldDescription,
-      _id,
+      id,
       value,
+    },
+  };
+}
+
+export function openEditFieldAction(field: FieldType): ActionType {
+  return {
+    type: ActionEnum.OPEN_EDIT_FIELD,
+    payload: {
+      field,
     },
   };
 }

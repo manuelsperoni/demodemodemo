@@ -1,4 +1,4 @@
-import { AppStateType } from 'renderer/types/Types';
+import { AppStateType, FieldType } from 'renderer/types/Types';
 
 export enum ActionEnum {
   EDIT_FIELD_DESCRIPTION,
@@ -9,20 +9,21 @@ export enum ActionEnum {
   ADD_RECORD,
   REMOVE_RECORD,
   EDIT_RECORD,
+  OPEN_EDIT_FIELD,
 }
 
 export type ActionType =
   | {
       type: ActionEnum.EDIT_FIELD_DESCRIPTION;
       payload: {
-        currentDescription: string;
+        id: string;
         updatedDescription: string;
       };
     }
   | {
       type: ActionEnum.EDIT_FIELD_OPTION;
       payload: {
-        fieldDescription: string;
+        id: string;
         currentOption: string;
         updatedOption: string;
       };
@@ -30,41 +31,47 @@ export type ActionType =
   | {
       type: ActionEnum.REMOVE_FIELD_OPTION;
       payload: {
-        fieldDescription: string;
+        id: string;
         option: string;
       };
     }
   | {
       type: ActionEnum.REMOVE_FIELD;
       payload: {
-        fieldDescription: string;
+        id: string;
       };
     }
   | {
       type: ActionEnum.ADD_FIELD_OPTION;
       payload: {
-        fieldDescription: string;
+        id: string;
         option: string;
       };
     }
   | {
       type: ActionEnum.ADD_RECORD;
       payload: {
-        _id: string;
+        id: string;
       };
     }
   | {
       type: ActionEnum.REMOVE_RECORD;
       payload: {
-        _id: string;
+        id: string;
       };
     }
   | {
       type: ActionEnum.EDIT_RECORD;
       payload: {
-        _id: string;
+        id: string;
         fieldDescription: string;
         value: string;
+      };
+    }
+  | {
+      type: ActionEnum.OPEN_EDIT_FIELD;
+      payload: {
+        field: FieldType;
       };
     };
 
@@ -94,7 +101,7 @@ export default function appReducer(
       return {
         ...app,
         fields: app.fields.map((field) => {
-          if (field.description === action.payload.fieldDescription)
+          if (field.id === action.payload.id)
             return {
               ...field,
               values: field.values.map((value) => {
@@ -112,7 +119,7 @@ export default function appReducer(
       return {
         ...app,
         fields: app.fields.map((field) => {
-          if (field.description === action.payload.fieldDescription)
+          if (field.id === action.payload.id)
             return {
               ...field,
               values: field.values.filter(
@@ -126,16 +133,14 @@ export default function appReducer(
     case ActionEnum.REMOVE_FIELD:
       return {
         ...app,
-        fields: app.fields.filter(
-          (field) => field.description !== action.payload.fieldDescription
-        ),
+        fields: app.fields.filter((field) => field.id !== action.payload.id),
       };
 
     case ActionEnum.ADD_FIELD_OPTION:
       return {
         ...app,
         fields: app.fields.map((field) => {
-          if (field.description === action.payload.fieldDescription)
+          if (field.id === action.payload.id)
             return {
               ...field,
               values: [...field.values, action.payload.option],
@@ -149,7 +154,7 @@ export default function appReducer(
       return {
         ...app,
         records: app.records.map((record) => {
-          if (record._id === action.payload._id) {
+          if (record.id === action.payload.id) {
             const updatedRecord = { ...record };
             updatedRecord[action.payload.fieldDescription] =
               action.payload.value;
@@ -160,7 +165,7 @@ export default function appReducer(
       };
 
     case ActionEnum.ADD_RECORD:
-      const newRecord = { _id: action.payload._id };
+      const newRecord = { id: action.payload.id };
       app.fields.forEach((field) => {
         newRecord[field.description] = '';
       });
@@ -173,8 +178,14 @@ export default function appReducer(
       return {
         ...app,
         records: app.records.filter(
-          (record) => record._id !== action.payload._id
+          (record) => record.id !== action.payload.id
         ),
+      };
+
+    case ActionEnum.OPEN_EDIT_FIELD:
+      return {
+        ...app,
+        fieldOnEdit: action.payload.field,
       };
 
     default: {

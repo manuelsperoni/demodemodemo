@@ -1,10 +1,12 @@
 import { extendTheme } from '@chakra-ui/react';
+import { menuTheme } from './menuTheme';
 
 // eslint-disable-next-line import/prefer-default-export
 const AppTheme = extendTheme({
   initialColorMode: 'dark', // 'dark' | 'light'
   useSystemColorMode: false,
   components: {
+    Menu: menuTheme,
     Button: {
       variants: {
         menuItem: {
@@ -41,7 +43,7 @@ const AppTheme = extendTheme({
         },
         ghost: {
           background: 'transparent',
-          color: 'brand.accent',
+          color: 'brand.200',
           fontWeight: 'normal',
           _hover: { background: 'brand.300' },
           _expanded: { background: 'brand.400', color: 'brand.100' },

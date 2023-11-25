@@ -1,24 +1,36 @@
 import { useAppContext } from 'renderer/context/AppContext';
 import { Grid, GridItem, Text, Flex } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { List } from 'react-virtualized';
+import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 import GridRow from './GridRow';
+
+function Row({ index, style }) {
+  const state = useAppContext();
+  return (
+    <div style={style}>
+      <GridRow style={style} record={state.records[index]} />
+    </div>
+  );
+}
 
 export default function GridMain() {
   const state = useAppContext();
-  useEffect(() => console.log('GridMain remount'), []);
-
   return (
-    <Grid
-      templateColumns={`repeat(${state.fields.length + 1}, 0fr)`}
-      gap={0}
-      autoFlow="unset"
-      borderWidth={1}
-      borderColor="brand.400"
-    >
-      {state.records.map((record) => (
-        <GridRow record={record} />
-      ))}
-    </Grid>
+    <Flex flex="1">
+      <AutoSizer>
+        {({ height, width }) => (
+          <List
+            className="List"
+            height={height}
+            itemCount={state.records.length}
+            itemSize={50}
+            width={width}
+          >
+            {Row}
+          </List>
+        )}
+      </AutoSizer>
+    </Flex>
   );
 }
