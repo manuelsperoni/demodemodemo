@@ -10,6 +10,7 @@ export enum ActionEnum {
   REMOVE_RECORD,
   EDIT_RECORD,
   OPEN_EDIT_FIELD,
+  CLOSE_EDIT_FIELD,
 }
 
 export type ActionType =
@@ -71,8 +72,11 @@ export type ActionType =
   | {
       type: ActionEnum.OPEN_EDIT_FIELD;
       payload: {
-        field: FieldType;
+        fieldId: string;
       };
+    }
+  | {
+      type: ActionEnum.CLOSE_EDIT_FIELD;
     };
 
 export default function appReducer(
@@ -82,16 +86,18 @@ export default function appReducer(
   console.log(action.type);
   switch (action.type) {
     case ActionEnum.EDIT_FIELD_DESCRIPTION:
+      const oldDescription =
+        app.fields[app.fields.findIndex((el) => el.id == action.payload.id)]
+          .description;
       return {
         ...app,
         records: app.records.map((record) => {
-          record[action.payload.updatedDescription] =
-            record[action.payload.currentDescription];
-          delete record[action.payload.currentDescription];
+          record[action.payload.updatedDescription] = record[oldDescription];
+          delete record[oldDescription];
           return { ...record };
         }),
         fields: app.fields.map((field) => {
-          if (field.description === action.payload.currentDescription)
+          if (field.id === action.payload.id)
             return { ...field, description: action.payload.updatedDescription };
           return field;
         }),
@@ -123,7 +129,7 @@ export default function appReducer(
             return {
               ...field,
               values: field.values.filter(
-                (value) => value != action.payload.option
+                (value) => value !== action.payload.option
               ),
             };
           return field;
@@ -150,7 +156,6 @@ export default function appReducer(
       };
 
     case ActionEnum.EDIT_RECORD:
-      console.log(Date.now());
       return {
         ...app,
         records: app.records.map((record) => {
@@ -185,7 +190,12 @@ export default function appReducer(
     case ActionEnum.OPEN_EDIT_FIELD:
       return {
         ...app,
-        fieldOnEdit: action.payload.field,
+        selectedFieldId: action.payload.fieldId,
+      };
+    case ActionEnum.CLOSE_EDIT_FIELD:
+      return {
+        ...app,
+        selectedFieldId: null,
       };
 
     default: {

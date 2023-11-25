@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { ActionEnum, ActionType } from 'renderer/reducers/Reducers';
 import { FieldType } from 'renderer/types/Types';
 
-export function editFieldDescription(
+export function editFieldDescriptionAction(
   id: string,
   updatedDescription: string
 ): ActionType {
@@ -15,7 +15,7 @@ export function editFieldDescription(
   };
 }
 
-export function editFieldOption(
+export function editFieldOptionAction(
   id: string,
   currentOption: string,
   updatedOption: string
@@ -30,7 +30,10 @@ export function editFieldOption(
   };
 }
 
-export function removeFieldOption(id: string, option: string): ActionType {
+export function removeFieldOptionAction(
+  id: string,
+  option: string
+): ActionType {
   return {
     type: ActionEnum.REMOVE_FIELD_OPTION,
     payload: {
@@ -49,7 +52,7 @@ export function removeFieldAction(id: string): ActionType {
   };
 }
 
-export function addFieldOption(id: string, option: string): ActionType {
+export function addFieldOptionAction(id: string, option: string): ActionType {
   return {
     type: ActionEnum.ADD_FIELD_OPTION,
     payload: {
@@ -59,7 +62,7 @@ export function addFieldOption(id: string, option: string): ActionType {
   };
 }
 
-export function addRecord(): ActionType {
+export function addRecordAction(): ActionType {
   return {
     type: ActionEnum.ADD_RECORD,
     payload: {
@@ -68,7 +71,7 @@ export function addRecord(): ActionType {
   };
 }
 
-export function removeRecord(id: string): ActionType {
+export function removeRecordAction(id: string): ActionType {
   return {
     type: ActionEnum.REMOVE_RECORD,
     payload: {
@@ -77,7 +80,7 @@ export function removeRecord(id: string): ActionType {
   };
 }
 
-export function editRecord(
+export function editRecordAction(
   fieldDescription: string,
   id: string,
   value: string
@@ -92,11 +95,17 @@ export function editRecord(
   };
 }
 
-export function openEditFieldAction(field: FieldType): ActionType {
+export function openEditFieldAction(fieldId: string): ActionType {
   return {
     type: ActionEnum.OPEN_EDIT_FIELD,
     payload: {
-      field,
+      fieldId,
     },
+  };
+}
+
+export function closeEditFieldAction(): ActionType {
+  return {
+    type: ActionEnum.CLOSE_EDIT_FIELD,
   };
 }

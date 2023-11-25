@@ -22,7 +22,7 @@ export default function App() {
         >
           <Topbar />
           <Main />
-          {/* <RawPreview /> */}
+          <RawPreview />
           <BottomBar />
         </Flex>
       </AppProvider>

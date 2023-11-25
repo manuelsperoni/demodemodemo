@@ -39,8 +39,7 @@ import {
 } from 'react-icons/bi';
 import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
 import {
-  addRecord,
-  editFieldDescription,
+  editFieldDescriptionAction,
   openEditFieldAction,
   removeFieldAction,
 } from 'renderer/actions/Actions';
@@ -63,38 +62,25 @@ export default function GridHeader() {
           borderColor="brand.400"
         >
           <Icon as={BiUser} color="brand.100" />
-          <Text color="brand.200">{field.description}</Text>
+          <Input
+            color="brand.100"
+            borderColor="transparent"
+            padding={0}
+            margin={0}
+            value={field.description}
+            width="70px"
+            onChange={(e) => {
+              dispatch(editFieldDescriptionAction(field.id, e.target.value));
+            }}
+          />
           <Menu width="50" height="50" closeOnSelect={false} preventOverflow>
             <MenuButton as={IconButton} icon={<BiDotsHorizontal />} />
             <MenuList>
               <MenuItem
                 icon={<BiEdit />}
-                onClick={() => dispatch(openEditFieldAction(field))}
+                onClick={() => dispatch(openEditFieldAction(field.id))}
               >
                 Edit
-                {/* <Menu closeOnSelect={false} placement="right">
-                <MenuButton
-                  w="100%"
-                  h="40px"
-                  color="brand.200"
-                  _hover={{ background: 'brand.300' }}
-                >
-                  <Flex align="center" gap="5" paddingInline={5}>
-                    <BiUser /> Edit field
-                    <Spacer />
-                  </Flex>
-                </MenuButton>
-                <MenuList
-                  bg="brand.500"
-                  borderColor="brand.300"
-                  padding={0}
-                  overflow="hidden"
-                  flexDirection="column"
-                  display="flex"
-                >
-                  <GridHeaderSubMenu field={field} />
-                </MenuList>
-              </Menu> */}
               </MenuItem>
               <MenuItem icon={<BiArrowToBottom />}>Sort desc </MenuItem>
               <MenuItem icon={<BiArrowToTop />}>Sort asc </MenuItem>
@@ -111,7 +97,7 @@ export default function GridHeader() {
       <Flex height="50" flex="0 0 100px" justify="center" align="center">
         <IconButton
           aria-label="add record"
-          onClick={() => dispatch(addRecord())}
+          onClick={() => dispatch(addRecordAction())}
           icon={<BiPlus />}
           variant="ghost"
         />

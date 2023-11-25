@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { BiDotsHorizontalRounded, BiPlus, BiTrash } from 'react-icons/bi';
-import { editRecord, removeRecord } from 'renderer/actions/Actions';
+import { editRecordAction, removeRecordAction } from 'renderer/actions/Actions';
 import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
 
 export default function GridRow({ record }: any) {
@@ -35,7 +35,9 @@ export default function GridRow({ record }: any) {
                 <MenuItem
                   key={value}
                   onClick={() =>
-                    dispatch(editRecord(field.description, record.id, value))
+                    dispatch(
+                      editRecordAction(field.description, record.id, value)
+                    )
                   }
                 >
                   {value}

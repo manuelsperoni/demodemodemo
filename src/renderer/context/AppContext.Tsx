@@ -5,7 +5,7 @@ import { AppStateType, AvailableFieldEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
   records: [],
-  fieldOnEdit: null,
+  selectedFieldId: null,
   fields: [
     {
       description: 'field1',
