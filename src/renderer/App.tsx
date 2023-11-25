@@ -1,10 +1,10 @@
 import { Flex, ChakraProvider } from '@chakra-ui/react';
-import Topbar from './components/topbar/topbar';
-import Main from './components/main';
-import AppTheme from './theme/Theme';
-import { AppProvider } from './context/AppContext';
-import BottomBar from './components/bottombar/bottombar';
+import Topbar from './components/topbar/Topbar';
+import Main from './components/Main';
+import AppTheme from './theme/theme';
+import { AppProvider } from './store/AppContext';
 import RawPreview from './components/raw-preview';
+import BottomBar from './components/BottomBar';
 
 export default function App() {
   return (
@@ -22,7 +22,7 @@ export default function App() {
         >
           <Topbar />
           <Main />
-          <RawPreview />
+          {/* <RawPreview /> */}
           <BottomBar />
         </Flex>
       </AppProvider>

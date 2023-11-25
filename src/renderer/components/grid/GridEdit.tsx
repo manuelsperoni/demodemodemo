@@ -28,8 +28,8 @@ import {
   editFieldOptionAction,
   removeFieldAction,
   removeFieldOptionAction,
-} from 'renderer/actions/Actions';
-import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
+} from 'renderer/store/actions';
+import { useAppContext, useAppDispatch } from 'renderer/store/AppContext';
 
 export default function GridEdit() {
   const state = useAppContext();
@@ -39,8 +39,6 @@ export default function GridEdit() {
     state.fields[
       state.fields.findIndex((el) => el.id == state.selectedFieldId)
     ];
-  console.log('ID:', state.selectedFieldId);
-  console.log('state:', selectedField);
 
   return (
     <Drawer

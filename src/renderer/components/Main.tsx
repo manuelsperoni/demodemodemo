@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 
-import Grid from './records/Grid';
+import Grid from './grid/Grid';
 
 export default function Main() {
   return (

@@ -23,6 +23,7 @@ import {
   TableCaption,
   TableContainer,
   Icon,
+  MenuDivider,
 } from '@chakra-ui/react';
 import { AiOutlineEllipsis } from 'react-icons/ai';
 import {
@@ -37,17 +38,18 @@ import {
   BiTrash,
   BiUser,
 } from 'react-icons/bi';
-import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
+import { useAppContext, useAppDispatch } from 'renderer/store/AppContext';
 import {
   editFieldDescriptionAction,
   openEditFieldAction,
   removeFieldAction,
-} from 'renderer/actions/Actions';
+} from 'renderer/store/actions';
 import { useState } from 'react';
 
 export default function GridHeader() {
   const state = useAppContext();
   const dispatch = useAppDispatch();
+  const [tmpFieldDescription, setTmpFieldDescription] = useState('');
 
   return (
     <Flex direction="row" borderBottomWidth={1} borderColor="brand.400">
@@ -61,21 +63,31 @@ export default function GridHeader() {
           borderRightWidth={1}
           borderColor="brand.400"
         >
-          <Icon as={BiUser} color="brand.100" />
-          <Input
-            color="brand.100"
-            borderColor="transparent"
-            padding={0}
-            margin={0}
-            value={field.description}
-            width="70px"
-            onChange={(e) => {
-              dispatch(editFieldDescriptionAction(field.id, e.target.value));
-            }}
-          />
-          <Menu width="50" height="50" closeOnSelect={false} preventOverflow>
-            <MenuButton as={IconButton} icon={<BiDotsHorizontal />} />
+          <Menu
+            closeOnSelect={false}
+            preventOverflow
+            onOpen={() => setTmpFieldDescription(field.description)}
+            onClose={() =>
+              dispatch(
+                editFieldDescriptionAction(field.id, tmpFieldDescription)
+              )
+            }
+          >
+            <MenuButton
+              w="200px"
+              h="50px"
+              as={Button}
+              leftIcon={<BiUser />}
+              borderRadius={0}
+            >
+              {field.description}
+            </MenuButton>
             <MenuList>
+              <Input
+                value={tmpFieldDescription}
+                onChange={(e) => setTmpFieldDescription(e.target.value)}
+              />
+              <MenuDivider />
               <MenuItem
                 icon={<BiEdit />}
                 onClick={() => dispatch(openEditFieldAction(field.id))}

@@ -1,29 +1,27 @@
-import { randomUUID } from 'crypto';
-import { ActionEnum, ActionType } from 'renderer/reducers/Reducers';
-import { FieldType } from 'renderer/types/Types';
+import { ActionType } from 'renderer/store/reducers';
 
 export function editFieldDescriptionAction(
-  id: string,
+  fieldId: string,
   updatedDescription: string
 ): ActionType {
   return {
-    type: ActionEnum.EDIT_FIELD_DESCRIPTION,
+    type: 'EDIT_FIELD_DESCRIPTION',
     payload: {
-      id,
+      fieldId,
       updatedDescription,
     },
   };
 }
 
 export function editFieldOptionAction(
-  id: string,
+  fieldId: string,
   currentOption: string,
   updatedOption: string
 ): ActionType {
   return {
-    type: ActionEnum.EDIT_FIELD_OPTION,
+    type: 'EDIT_FIELD_OPTION',
     payload: {
-      id,
+      fieldId,
       currentOption,
       updatedOption,
     },
@@ -31,32 +29,35 @@ export function editFieldOptionAction(
 }
 
 export function removeFieldOptionAction(
-  id: string,
+  fieldId: string,
   option: string
 ): ActionType {
   return {
-    type: ActionEnum.REMOVE_FIELD_OPTION,
+    type: 'REMOVE_FIELD_OPTION',
     payload: {
-      id,
+      fieldId,
       option,
     },
   };
 }
 
-export function removeFieldAction(id: string): ActionType {
+export function removeFieldAction(fieldId: string): ActionType {
   return {
-    type: ActionEnum.REMOVE_FIELD,
+    type: 'REMOVE_FIELD',
     payload: {
-      id,
+      fieldId,
     },
   };
 }
 
-export function addFieldOptionAction(id: string, option: string): ActionType {
+export function addFieldOptionAction(
+  fieldId: string,
+  option: string
+): ActionType {
   return {
-    type: ActionEnum.ADD_FIELD_OPTION,
+    type: 'ADD_FIELD_OPTION',
     payload: {
-      id,
+      fieldId,
       option,
     },
   };
@@ -64,32 +65,32 @@ export function addFieldOptionAction(id: string, option: string): ActionType {
 
 export function addRecordAction(): ActionType {
   return {
-    type: ActionEnum.ADD_RECORD,
+    type: 'ADD_RECORD',
     payload: {
-      id: crypto.randomUUID(),
+      recordId: crypto.randomUUID(),
     },
   };
 }
 
-export function removeRecordAction(id: string): ActionType {
+export function removeRecordAction(recordId: string): ActionType {
   return {
-    type: ActionEnum.REMOVE_RECORD,
+    type: 'REMOVE_RECORD',
     payload: {
-      id,
+      recordId,
     },
   };
 }
 
 export function editRecordAction(
   fieldDescription: string,
-  id: string,
+  recordId: string,
   value: string
 ): ActionType {
   return {
-    type: ActionEnum.EDIT_RECORD,
+    type: 'EDIT_RECORD',
     payload: {
       fieldDescription,
-      id,
+      recordId,
       value,
     },
   };
@@ -97,7 +98,7 @@ export function editRecordAction(
 
 export function openEditFieldAction(fieldId: string): ActionType {
   return {
-    type: ActionEnum.OPEN_EDIT_FIELD,
+    type: 'OPEN_EDIT_FIELD',
     payload: {
       fieldId,
     },
@@ -106,6 +107,6 @@ export function openEditFieldAction(fieldId: string): ActionType {
 
 export function closeEditFieldAction(): ActionType {
   return {
-    type: ActionEnum.CLOSE_EDIT_FIELD,
+    type: 'CLOSE_EDIT_FIELD',
   };
 }

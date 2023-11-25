@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react';
-import { useAppContext } from 'renderer/context/AppContext';
+import { useAppContext } from 'renderer/store/AppContext';
 
 function getHighlightedText(text, highlight) {
   // Split on highlight term and include term into parts, ignore case

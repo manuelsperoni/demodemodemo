@@ -11,17 +11,17 @@ import {
   Spacer,
   effect,
   Grid,
+  Avatar,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { BiDotsHorizontalRounded, BiPlus, BiTrash } from 'react-icons/bi';
-import { editRecordAction, removeRecordAction } from 'renderer/actions/Actions';
-import { useAppContext, useAppDispatch } from 'renderer/context/AppContext';
+import { editRecordAction, removeRecordAction } from 'renderer/store/actions';
+import { useAppContext, useAppDispatch } from 'renderer/store/AppContext';
 
 export default function GridRow({ record }: any) {
   const state = useAppContext();
   const dispatch = useAppDispatch();
 
-  useEffect(() => console.log('row remount'), []);
   return (
     <Flex direction="row" borderBottomWidth={1} borderColor="brand.400">
       {state.fields.map((field) => (
@@ -40,7 +40,8 @@ export default function GridRow({ record }: any) {
                     )
                   }
                 >
-                  {value}
+                  <Avatar name={value} mr="12px" size="sm" />
+                  <Text>{value}</Text>
                 </MenuItem>
               ))}
             </MenuList>
@@ -53,7 +54,7 @@ export default function GridRow({ record }: any) {
           <MenuList>
             <MenuItem
               icon={<BiTrash />}
-              onClick={() => dispatch(removeRecord(record.id))}
+              onClick={() => dispatch(removeRecordAction(record.id))}
             >
               Delete
             </MenuItem>

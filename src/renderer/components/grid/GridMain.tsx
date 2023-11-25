@@ -1,4 +1,4 @@
-import { useAppContext } from 'renderer/context/AppContext';
+import { useAppContext } from 'renderer/store/AppContext';
 import { Grid, GridItem, Text, Flex } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { FixedSizeList as List } from 'react-window';

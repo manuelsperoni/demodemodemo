@@ -10,5 +10,9 @@ Is a Notion Database like function with Analystics.
 - text -> for note
 - tag -> for category
 
+# TO Do 
+-[] Project structure refactor and code cleaning - 2h
+
+
 
 

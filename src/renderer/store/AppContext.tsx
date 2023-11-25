@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { createContext, useContext, useReducer } from 'react';
-import appReducer from 'renderer/reducers/Reducers';
+import appReducer from 'renderer/store/reducers';
 import { AppStateType, AvailableFieldEnum } from 'renderer/types/Types';
 
 const initialApp: AppStateType = {
@@ -40,7 +40,7 @@ const initialApp: AppStateType = {
   ],
 };
 
-for (let index = 0; index < 100; index++) {
+for (let index = 0; index < 1000; index++) {
   const newRecord = { id: index };
   initialApp.fields.forEach((field) => {
     newRecord[field.description] = `desc${index}`;

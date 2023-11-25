@@ -1,113 +1,108 @@
-import { AppStateType, FieldType } from 'renderer/types/Types';
-
-export enum ActionEnum {
-  EDIT_FIELD_DESCRIPTION,
-  EDIT_FIELD_OPTION,
-  REMOVE_FIELD_OPTION,
-  ADD_FIELD_OPTION,
-  REMOVE_FIELD,
-  ADD_RECORD,
-  REMOVE_RECORD,
-  EDIT_RECORD,
-  OPEN_EDIT_FIELD,
-  CLOSE_EDIT_FIELD,
-}
+import { AppStateType } from 'renderer/types/Types';
 
 export type ActionType =
   | {
-      type: ActionEnum.EDIT_FIELD_DESCRIPTION;
+      type: 'EDIT_FIELD_DESCRIPTION';
       payload: {
-        id: string;
+        fieldId: string;
         updatedDescription: string;
       };
     }
   | {
-      type: ActionEnum.EDIT_FIELD_OPTION;
+      type: 'EDIT_FIELD_OPTION';
       payload: {
-        id: string;
+        fieldId: string;
         currentOption: string;
         updatedOption: string;
       };
     }
   | {
-      type: ActionEnum.REMOVE_FIELD_OPTION;
+      type: 'REMOVE_FIELD_OPTION';
       payload: {
-        id: string;
+        fieldId: string;
         option: string;
       };
     }
   | {
-      type: ActionEnum.REMOVE_FIELD;
-      payload: {
-        id: string;
-      };
-    }
-  | {
-      type: ActionEnum.ADD_FIELD_OPTION;
-      payload: {
-        id: string;
-        option: string;
-      };
-    }
-  | {
-      type: ActionEnum.ADD_RECORD;
-      payload: {
-        id: string;
-      };
-    }
-  | {
-      type: ActionEnum.REMOVE_RECORD;
-      payload: {
-        id: string;
-      };
-    }
-  | {
-      type: ActionEnum.EDIT_RECORD;
-      payload: {
-        id: string;
-        fieldDescription: string;
-        value: string;
-      };
-    }
-  | {
-      type: ActionEnum.OPEN_EDIT_FIELD;
+      type: 'REMOVE_FIELD';
       payload: {
         fieldId: string;
       };
     }
   | {
-      type: ActionEnum.CLOSE_EDIT_FIELD;
+      type: 'ADD_FIELD_OPTION';
+      payload: {
+        fieldId: string;
+        option: string;
+      };
+    }
+  | {
+      type: 'ADD_RECORD';
+      payload: {
+        recordId: string;
+      };
+    }
+  | {
+      type: 'REMOVE_RECORD';
+      payload: {
+        recordId: string;
+      };
+    }
+  | {
+      type: 'EDIT_RECORD';
+      payload: {
+        recordId: string;
+        fieldDescription: string;
+        value: string;
+      };
+    }
+  | {
+      type: 'OPEN_EDIT_FIELD';
+      payload: {
+        fieldId: string;
+      };
+    }
+  | {
+      type: 'CLOSE_EDIT_FIELD';
     };
 
 export default function appReducer(
   app: AppStateType,
   action: ActionType
 ): AppStateType {
-  console.log(action.type);
-  switch (action.type) {
-    case ActionEnum.EDIT_FIELD_DESCRIPTION:
-      const oldDescription =
-        app.fields[app.fields.findIndex((el) => el.id == action.payload.id)]
-          .description;
-      return {
-        ...app,
-        records: app.records.map((record) => {
-          record[action.payload.updatedDescription] = record[oldDescription];
-          delete record[oldDescription];
-          return { ...record };
-        }),
-        fields: app.fields.map((field) => {
-          if (field.id === action.payload.id)
-            return { ...field, description: action.payload.updatedDescription };
-          return field;
-        }),
-      };
+  console.log(`Action type : ${action.type}`);
+  console.log(`Action payload : ${action.payload}`);
 
-    case ActionEnum.EDIT_FIELD_OPTION:
+  switch (action.type) {
+    case 'EDIT_FIELD_DESCRIPTION':
+      const oldDescription =
+        app.fields[
+          app.fields.findIndex((el) => el.id == action.payload.fieldId)
+        ].description;
+      if (oldDescription !== action.payload.updatedDescription)
+        return {
+          ...app,
+          records: app.records.map((record) => {
+            record[action.payload.updatedDescription] = record[oldDescription];
+            delete record[oldDescription];
+            return { ...record };
+          }),
+          fields: app.fields.map((field) => {
+            if (field.id === action.payload.fieldId)
+              return {
+                ...field,
+                description: action.payload.updatedDescription,
+              };
+            return field;
+          }),
+        };
+      return app;
+
+    case 'EDIT_FIELD_OPTION':
       return {
         ...app,
         fields: app.fields.map((field) => {
-          if (field.id === action.payload.id)
+          if (field.id === action.payload.fieldId)
             return {
               ...field,
               values: field.values.map((value) => {
@@ -121,11 +116,11 @@ export default function appReducer(
         }),
       };
 
-    case ActionEnum.REMOVE_FIELD_OPTION:
+    case 'REMOVE_FIELD_OPTION':
       return {
         ...app,
         fields: app.fields.map((field) => {
-          if (field.id === action.payload.id)
+          if (field.id === action.payload.fieldId)
             return {
               ...field,
               values: field.values.filter(
@@ -136,17 +131,19 @@ export default function appReducer(
         }),
       };
 
-    case ActionEnum.REMOVE_FIELD:
+    case 'REMOVE_FIELD':
       return {
         ...app,
-        fields: app.fields.filter((field) => field.id !== action.payload.id),
+        fields: app.fields.filter(
+          (field) => field.id !== action.payload.fieldId
+        ),
       };
 
-    case ActionEnum.ADD_FIELD_OPTION:
+    case 'ADD_FIELD_OPTION':
       return {
         ...app,
         fields: app.fields.map((field) => {
-          if (field.id === action.payload.id)
+          if (field.id === action.payload.fieldId)
             return {
               ...field,
               values: [...field.values, action.payload.option],
@@ -155,11 +152,11 @@ export default function appReducer(
         }),
       };
 
-    case ActionEnum.EDIT_RECORD:
+    case 'EDIT_RECORD':
       return {
         ...app,
         records: app.records.map((record) => {
-          if (record.id === action.payload.id) {
+          if (record.id === action.payload.recordId) {
             const updatedRecord = { ...record };
             updatedRecord[action.payload.fieldDescription] =
               action.payload.value;
@@ -169,8 +166,8 @@ export default function appReducer(
         }),
       };
 
-    case ActionEnum.ADD_RECORD:
-      const newRecord = { id: action.payload.id };
+    case 'ADD_RECORD':
+      const newRecord = { id: action.payload.recordId };
       app.fields.forEach((field) => {
         newRecord[field.description] = '';
       });
@@ -179,20 +176,20 @@ export default function appReducer(
         records: [newRecord, ...app.records],
       };
 
-    case ActionEnum.REMOVE_RECORD:
+    case 'REMOVE_RECORD':
       return {
         ...app,
         records: app.records.filter(
-          (record) => record.id !== action.payload.id
+          (record) => record.id !== action.payload.recordId
         ),
       };
 
-    case ActionEnum.OPEN_EDIT_FIELD:
+    case 'OPEN_EDIT_FIELD':
       return {
         ...app,
         selectedFieldId: action.payload.fieldId,
       };
-    case ActionEnum.CLOSE_EDIT_FIELD:
+    case 'CLOSE_EDIT_FIELD':
       return {
         ...app,
         selectedFieldId: null,

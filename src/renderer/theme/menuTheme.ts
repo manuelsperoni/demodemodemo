@@ -57,9 +57,7 @@ const baseStyle = definePartsStyle({
   },
   divider: {
     // this will style the MenuDivider component
-    my: '4',
-    borderColor: 'white',
-    borderBottom: '2px dotted',
+    borderColor: 'brand.300',
   },
 });
 // export the base styles in the component theme
